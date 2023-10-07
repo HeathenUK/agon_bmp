@@ -108,9 +108,29 @@ void reorder(char *arr, uint16_t length) {
     }
 }
 
+void reorder_and_insert(char *arr, uint16_t length, char **new_arr, uint16_t *new_length, char insert_value) {
+
+	uint16_t i, j = 0;
+    *new_length = (length / 3) * 4 + (length % 3);
+    *new_arr = (char *) malloc(*new_length * sizeof(char));
+
+    for (i = 0; i < length; i += 3) {
+        
+        (*new_arr)[j] = (i + 2 < length) ? arr[i + 2] : 0;
+        (*new_arr)[j + 1] = (i + 1 < length) ? arr[i + 1] : 0;
+        (*new_arr)[j + 2] = arr[i];
+        
+        (*new_arr)[j + 3] = 0xFF;
+
+        j += 4;
+    }
+	free(new_arr);
+}
+
 bmp_info load_bmp_big(const char * filename, UINT8 slot) { //Uses 64x64x4 chunks
 
     int32_t image_start, width, height, bit_depth, row_padding = 0, y, x, i;
+	char* row_24bpp;
     uint8_t pixel[4], file, r, g, b, index;
     char header[54], color_table[1024];
     uint32_t pixel_value, color_table_size, bytes_per_row;
@@ -202,10 +222,9 @@ bmp_info load_bmp_big(const char * filename, UINT8 slot) { //Uses 64x64x4 chunks
 
         }
 
-    } else if (bit_depth == 32 || bit_depth == 24) {
-        int non_pad_row = width * bit_depth / 8;
-        //bytes_per_row = (width * bit_depth / 8) + row_padding;
-
+    } else if (bit_depth == 32) {
+        
+		int non_pad_row = width * bit_depth / 8;
         src = (char * ) malloc(width * bit_depth / 8);
 		mos_flseek(file, image_start + ((height - 1) * (non_pad_row + row_padding)));
 
@@ -218,10 +237,29 @@ bmp_info load_bmp_big(const char * filename, UINT8 slot) { //Uses 64x64x4 chunks
 
         }
 
-    }
+    } else if (bit_depth == 24) {
+		
+		uint16_t new_row_size;
+		int non_pad_row = width * bit_depth / 8;
+		
+        src = (char * ) malloc(width * bit_depth / 8);
+		mos_flseek(file, image_start + ((height - 1) * (non_pad_row + row_padding)));
+		
+        for (y = height - 1; y >= 0; y--) {
+
+            mos_fread(file, src, non_pad_row);
+			reorder_and_insert(src, non_pad_row, &row_24bpp, &new_row_size, 0xFF);
+            mos_puts(row_24bpp, new_row_size, 0);
+            mos_flseek(file, fo -> fptr - ((non_pad_row * 2) + row_padding));
+			free(row_24bpp);
+
+        }		
+		
+	}
 
     mos_fclose(file);
     free(image_buffer);
+	free(src);
     //return width * height;
 	return_info.bmp_width = width;
 	return_info.bmp_height = height;
