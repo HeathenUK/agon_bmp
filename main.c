@@ -313,22 +313,21 @@ int main(int argc, char * argv[]) {
 	if (argc == 2) {
 
 		bmp = load_bmp_big(argv[1], 0);
-		x = (getsysvar_scrwidth() - bmp.bmp_width) / 2;
-		y = (getsysvar_scrheight() - bmp.bmp_height) / 2;		
-		vdp_bitmapDraw(0,0,0);
 		
 	} else if (argc == 3) {
 		
-		bmp = load_bmp_big(argv[1], 0);
-		x = (getsysvar_scrwidth() - bmp.bmp_width) / 2;
-		y = (getsysvar_scrheight() - bmp.bmp_height) / 2;
-		vdp_bitmapDraw(bitmap_slot,x,y);
+		bmp = load_bmp_big(argv[1], bitmap_slot);
 		
 	} else if (argc == 5) {
 	
-		bmp = load_bmp_big(argv[1], 0);
-		x = strtou16(argv[3]);
-		y = strtou16(argv[4]);
+		bmp = load_bmp_big(argv[1], bitmap_slot);
+		
+		if (argv[3][0] == 'C' || argv[3][0] == 'c') x = (getsysvar_scrwidth() - bmp.bmp_width) / 2;
+		else x = strtou16(argv[4]);
+		
+		if (argv[4][0] == 'C' || argv[4][0] == 'c') y = (getsysvar_scrheight() - bmp.bmp_height) / 2;
+		else y = strtou16(argv[4]);
+		
 		vdp_bitmapDraw(bitmap_slot,x,y);
 		
 	}

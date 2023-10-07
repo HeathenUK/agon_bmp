@@ -1,4 +1,4 @@
-Zilog eZ80 Macro Assembler Version 4.3 (19073001) RELISTED07-Oct-23     21:48:34     page:   1
+Zilog eZ80 Macro Assembler Version 4.3 (19073001) RELISTED07-Oct-23     22:06:15     page:   1
 
 
 PC     Object              I  Line    Source 
@@ -346,7 +346,7 @@ PC     Object              I  Line    Source
                            A   342    
 0B00FB 49213C00            A   343    	LD.LIS	HL,60
 0B00FF DD0706              A   344    	LD	BC,(IX+%6)
-0B0102 CD 11 27 0B         A   345    	CALL	__smulu
+0B0102 CD F3 26 0B         A   345    	CALL	__smulu
 0B0106 DD7506              A   346    	LD	(IX+%6),L
 0B0109 DD7407              A   347    	LD	(IX+%7),H
                            A   348    ;   29		while(true) {
@@ -357,26 +357,26 @@ PC     Object              I  Line    Source
                            A   353    ;   31			waitvblank();
                            A   354    .LINE 31
                            A   355    
-0B010C CD FB 1C 0B         A   356    	CALL	_waitvblank
+0B010C CD DD 1C 0B         A   356    	CALL	_waitvblank
                            A   357    ;   32			ticks++;
                            A   358    .LINE 32
                            A   359    
 0B0110 DD27FC              A   360    	LD	HL,(IX+%FFFFFFFC)
 0B0113 DD5EFF              A   361    	LD	E,(IX+%FFFFFFFF)
 0B0116 3E01                A   362    	LD	A,%1
-0B0118 CD B5 20 0B         A   363    	CALL	__ladd_b
+0B0118 CD 97 20 0B         A   363    	CALL	__ladd_b
 0B011C DD2FFC              A   364    	LD	(IX+%FFFFFFFC),HL
 0B011F DD73FF              A   365    	LD	(IX+%FFFFFFFF),E
                            A   366    ;   33			if(ticks >= ticks_end) break;
                            A   367    .LINE 33
                            A   368    
 0B0122 DD0706              A   369    	LD	BC,(IX+%6)
-0B0125 CD 23 24 0B         A   370    	CALL	__stoiu
+0B0125 CD 05 24 0B         A   370    	CALL	__stoiu
 0B0129 E5C1                A   371    	LD	BC,HL
 0B012B AF                  A   372    	XOR	A,A
 0B012C DD27FC              A   373    	LD	HL,(IX+%FFFFFFFC)
 0B012F DD5EFF              A   374    	LD	E,(IX+%FFFFFFFF)
-0B0132 CD 1E 26 0B         A   375    	CALL	__lcmpu
+0B0132 CD 00 26 0B         A   375    	CALL	__lcmpu
 0B0136 38 D4               A   376    	JR	C,L_3
                            A   377    ;   34			
                            A   378    ;   35		}
@@ -678,7 +678,7 @@ PC     Object              I  Line    Source
 0B01A8 29                  A   674    	ADD	HL,HL
 0B01A9 E5                  A   675    	PUSH	HL
 0B01AA DD77F1              A   676    	LD	(IX+%FFFFFFF1),A
-0B01AD CD CF 21 0B         A   677    	CALL	_malloc
+0B01AD CD B1 21 0B         A   677    	CALL	_malloc
 0B01B1 DD7EF1              A   678    	LD	A,(IX+%FFFFFFF1)
 0B01B4 C1                  A   679    	POP	BC
 0B01B5 DD2FFB              A   680    	LD	(IX+%FFFFFFFB),HL
@@ -701,9 +701,9 @@ PC     Object              I  Line    Source
                            A   697    .LINE 57
                            A   698    
 0B01CC DD07FE              A   699    	LD	BC,(IX+%FFFFFFFE)
-0B01CF CD 23 24 0B         A   700    	CALL	__stoiu
+0B01CF CD 05 24 0B         A   700    	CALL	__stoiu
 0B01D3 DD0709              A   701    	LD	BC,(IX+%9)
-0B01D6 CD 81 25 0B         A   702    	CALL	__imuls
+0B01D6 CD 63 25 0B         A   702    	CALL	__imuls
 0B01DA 29                  A   703    	ADD	HL,HL
 0B01DB 29                  A   704    	ADD	HL,HL
 0B01DC DD0706              A   705    	LD	BC,(IX+%6)
@@ -713,14 +713,14 @@ PC     Object              I  Line    Source
                            A   709    .LINE 58
                            A   710    
 0B01E3 DD07FE              A   711    	LD	BC,(IX+%FFFFFFFE)
-0B01E6 CD 23 24 0B         A   712    	CALL	__stoiu
+0B01E6 CD 05 24 0B         A   712    	CALL	__stoiu
 0B01EA E5C1                A   713    	LD	BC,HL
 0B01EC DD270C              A   714    	LD	HL,(IX+%C)
 0B01EF B7                  A   715    	OR	A,A
 0B01F0 ED42                A   716    	SBC	HL,BC
 0B01F2 2B                  A   717    	DEC	HL
 0B01F3 DD0709              A   718    	LD	BC,(IX+%9)
-0B01F6 CD 81 25 0B         A   719    	CALL	__imuls
+0B01F6 CD 63 25 0B         A   719    	CALL	__imuls
 0B01FA 29                  A   720    	ADD	HL,HL
 0B01FB 29                  A   721    	ADD	HL,HL
 0B01FC DD0706              A   722    	LD	BC,(IX+%6)
@@ -737,7 +737,7 @@ PC     Object              I  Line    Source
 0B020B DD07FB              A   733    	LD	BC,(IX+%FFFFFFFB)
 0B020E C5                  A   734    	PUSH	BC
 0B020F DD77F1              A   735    	LD	(IX+%FFFFFFF1),A
-0B0212 CD 21 25 0B         A   736    	CALL	_memcpy
+0B0212 CD 03 25 0B         A   736    	CALL	_memcpy
 0B0216 DD7EF1              A   737    	LD	A,(IX+%FFFFFFF1)
 0B0219 C1                  A   738    	POP	BC
 0B021A C1                  A   739    	POP	BC
@@ -752,7 +752,7 @@ PC     Object              I  Line    Source
 0B0224 DD07F5              A   748    	LD	BC,(IX+%FFFFFFF5)
 0B0227 C5                  A   749    	PUSH	BC
 0B0228 DD77F1              A   750    	LD	(IX+%FFFFFFF1),A
-0B022B CD 21 25 0B         A   751    	CALL	_memcpy
+0B022B CD 03 25 0B         A   751    	CALL	_memcpy
 0B022F DD7EF1              A   752    	LD	A,(IX+%FFFFFFF1)
 0B0232 C1                  A   753    	POP	BC
 0B0233 C1                  A   754    	POP	BC
@@ -767,7 +767,7 @@ PC     Object              I  Line    Source
 0B023D DD07F2              A   763    	LD	BC,(IX+%FFFFFFF2)
 0B0240 C5                  A   764    	PUSH	BC
 0B0241 DD77F1              A   765    	LD	(IX+%FFFFFFF1),A
-0B0244 CD 21 25 0B         A   766    	CALL	_memcpy
+0B0244 CD 03 25 0B         A   766    	CALL	_memcpy
 0B0248 DD7EF1              A   767    	LD	A,(IX+%FFFFFFF1)
 0B024B C1                  A   768    	POP	BC
 0B024C C1                  A   769    	POP	BC
@@ -782,10 +782,10 @@ PC     Object              I  Line    Source
                            A   778    
 0B0258 01020000            A   779    	LD	BC,2
 0B025C DD270C              A   780    	LD	HL,(IX+%C)
-0B025F CD BD 25 0B         A   781    	CALL	__idivs
+0B025F CD 9F 25 0B         A   781    	CALL	__idivs
 0B0263 E5D1                A   782    	LD	DE,HL
 0B0265 DD07FE              A   783    	LD	BC,(IX+%FFFFFFFE)
-0B0268 CD 23 24 0B         A   784    	CALL	__stoiu
+0B0268 CD 05 24 0B         A   784    	CALL	__stoiu
 0B026C B7                  A   785    	OR	A,A
 0B026D ED52                A   786    	SBC	HL,DE
 0B026F FA 79 02 0B         A   787    	JP	M,L__11
@@ -800,7 +800,7 @@ PC     Object              I  Line    Source
                            A   796    
 0B027D DD07FB              A   797    	LD	BC,(IX+%FFFFFFFB)
 0B0280 C5                  A   798    	PUSH	BC
-0B0281 CD CA 20 0B         A   799    	CALL	_free
+0B0281 CD AC 20 0B         A   799    	CALL	_free
 0B0285 C1                  A   800    	POP	BC
                            A   801    ;   66	}
                            A   802    .LINE 66
@@ -943,7 +943,7 @@ PC     Object              I  Line    Source
 0B029C 29                  A   939    	ADD	HL,HL
 0B029D E5                  A   940    	PUSH	HL
 0B029E DD77E4              A   941    	LD	(IX+%FFFFFFE4),A
-0B02A1 CD CF 21 0B         A   942    	CALL	_malloc
+0B02A1 CD B1 21 0B         A   942    	CALL	_malloc
 0B02A5 DD7EE4              A   943    	LD	A,(IX+%FFFFFFE4)
 0B02A8 C1                  A   944    	POP	BC
 0B02A9 DD2FFA              A   945    	LD	(IX+%FFFFFFFA),HL
@@ -961,7 +961,7 @@ PC     Object              I  Line    Source
                            A   957    
 0B02B7 DD27F1              A   958    	LD	HL,(IX+%FFFFFFF1)
 0B02BA DD0709              A   959    	LD	BC,(IX+%9)
-0B02BD CD 81 25 0B         A   960    	CALL	__imuls
+0B02BD CD 63 25 0B         A   960    	CALL	__imuls
 0B02C1 29                  A   961    	ADD	HL,HL
 0B02C2 29                  A   962    	ADD	HL,HL
 0B02C3 DD0706              A   963    	LD	BC,(IX+%6)
@@ -976,7 +976,7 @@ PC     Object              I  Line    Source
 0B02D1 ED42                A   972    	SBC	HL,BC
 0B02D3 2B                  A   973    	DEC	HL
 0B02D4 DD0709              A   974    	LD	BC,(IX+%9)
-0B02D7 CD 81 25 0B         A   975    	CALL	__imuls
+0B02D7 CD 63 25 0B         A   975    	CALL	__imuls
 0B02DB 29                  A   976    	ADD	HL,HL
 0B02DC 29                  A   977    	ADD	HL,HL
 0B02DD DD0706              A   978    	LD	BC,(IX+%6)
@@ -1224,7 +1224,7 @@ PC     Object              I  Line    Source
                            A  1220    
 0B046B 01020000            A  1221    	LD	BC,2
 0B046F DD270C              A  1222    	LD	HL,(IX+%C)
-0B0472 CD BD 25 0B         A  1223    	CALL	__idivs
+0B0472 CD 9F 25 0B         A  1223    	CALL	__idivs
 0B0476 E5C1                A  1224    	LD	BC,HL
 0B0478 DD27F1              A  1225    	LD	HL,(IX+%FFFFFFF1)
 0B047B B7                  A  1226    	OR	A,A
@@ -1240,7 +1240,7 @@ PC     Object              I  Line    Source
                            A  1236    
 0B048C DD07FA              A  1237    	LD	BC,(IX+%FFFFFFFA)
 0B048F C5                  A  1238    	PUSH	BC
-0B0490 CD CA 20 0B         A  1239    	CALL	_free
+0B0490 CD AC 20 0B         A  1239    	CALL	_free
 0B0494 C1                  A  1240    	POP	BC
                            A  1241    ;   98	}
                            A  1242    .LINE 98
@@ -1343,12 +1343,12 @@ PC     Object              I  Line    Source
                            A  1339    .LINE 103
                            A  1340    
 0B04AF DD07FE              A  1341    	LD	BC,(IX+%FFFFFFFE)
-0B04B2 CD 23 24 0B         A  1342    	CALL	__stoiu
+0B04B2 CD 05 24 0B         A  1342    	CALL	__stoiu
 0B04B6 E5D1                A  1343    	LD	DE,HL
 0B04B8 13                  A  1344    	INC	DE
 0B04B9 13                  A  1345    	INC	DE
 0B04BA DD0709              A  1346    	LD	BC,(IX+%9)
-0B04BD CD 23 24 0B         A  1347    	CALL	__stoiu
+0B04BD CD 05 24 0B         A  1347    	CALL	__stoiu
 0B04C1 E5C1                A  1348    	LD	BC,HL
 0B04C3 D5E1                A  1349    	LD	HL,DE
 0B04C5 B7                  A  1350    	OR	A,A
@@ -1363,7 +1363,7 @@ PC     Object              I  Line    Source
                            A  1359    .LINE 104
                            A  1360    
 0B04D6 DD07FE              A  1361    	LD	BC,(IX+%FFFFFFFE)
-0B04D9 CD 23 24 0B         A  1362    	CALL	__stoiu
+0B04D9 CD 05 24 0B         A  1362    	CALL	__stoiu
 0B04DD DD0706              A  1363    	LD	BC,(IX+%6)
 0B04E0 09                  A  1364    	ADD	HL,BC
 0B04E1 DD2FFA              A  1365    	LD	(IX+%FFFFFFFA),HL
@@ -1374,7 +1374,7 @@ PC     Object              I  Line    Source
                            A  1370    
 0B04E8 DD31FA              A  1371    	LD	IY,(IX+%FFFFFFFA)
 0B04EB DD07FE              A  1372    	LD	BC,(IX+%FFFFFFFE)
-0B04EE CD 23 24 0B         A  1373    	CALL	__stoiu
+0B04EE CD 05 24 0B         A  1373    	CALL	__stoiu
 0B04F2 DD0706              A  1374    	LD	BC,(IX+%6)
 0B04F5 09                  A  1375    	ADD	HL,BC
 0B04F6 FD7E02              A  1376    	LD	A,(IY+%2)
@@ -1383,7 +1383,7 @@ PC     Object              I  Line    Source
                            A  1379    .LINE 106
                            A  1380    
 0B04FA DD07FE              A  1381    	LD	BC,(IX+%FFFFFFFE)
-0B04FD CD 23 24 0B         A  1382    	CALL	__stoiu
+0B04FD CD 05 24 0B         A  1382    	CALL	__stoiu
 0B0501 DD0706              A  1383    	LD	BC,(IX+%6)
 0B0504 09                  A  1384    	ADD	HL,BC
 0B0505 23                  A  1385    	INC	HL
@@ -1735,7 +1735,7 @@ PC     Object              I  Line    Source
 0B054F C5                  A  1731    	PUSH	BC
 0B0550 DD0709              A  1732    	LD	BC,(IX+%9)
 0B0553 C5                  A  1733    	PUSH	BC
-0B0554 CD 19 1F 0B         A  1734    	CALL	_mos_fopen
+0B0554 CD FB 1E 0B         A  1734    	CALL	_mos_fopen
 0B0558 C1                  A  1735    	POP	BC
 0B0559 C1                  A  1736    	POP	BC
 0B055A DD77FF              A  1737    	LD	(IX+%FFFFFFFF),A
@@ -1747,19 +1747,19 @@ PC     Object              I  Line    Source
                            A  1743    ;  132	        printf("Error: could not open %
                            A  1744    .LINE 132
                            A  1745    
-0B0560 01 29 24 0B         A  1746    	LD	BC,___print_uputch
-0B0564 ED43 59 27 0B       A  1747    	LD	(___print_xputch),BC
-0B0569 01 5F 27 0B         A  1748    	LD	BC,L__27
+0B0560 01 0B 24 0B         A  1746    	LD	BC,___print_uputch
+0B0564 ED43 3B 27 0B       A  1747    	LD	(___print_xputch),BC
+0B0569 01 41 27 0B         A  1748    	LD	BC,L__27
 0B056D C5                  A  1749    	PUSH	BC
-0B056E CD 8E 22 0B         A  1750    	CALL	___print_sendstring
+0B056E CD 70 22 0B         A  1750    	CALL	___print_sendstring
 0B0572 C1                  A  1751    	POP	BC
 0B0573 DD0709              A  1752    	LD	BC,(IX+%9)
 0B0576 C5                  A  1753    	PUSH	BC
-0B0577 CD 8E 22 0B         A  1754    	CALL	___print_sendstring
+0B0577 CD 70 22 0B         A  1754    	CALL	___print_sendstring
 0B057B C1                  A  1755    	POP	BC
-0B057C 01 76 27 0B         A  1756    	LD	BC,L__28
+0B057C 01 58 27 0B         A  1756    	LD	BC,L__28
 0B0580 C5                  A  1757    	PUSH	BC
-0B0581 CD 8E 22 0B         A  1758    	CALL	___print_sendstring
+0B0581 CD 70 22 0B         A  1758    	CALL	___print_sendstring
 0B0585 C1                  A  1759    	POP	BC
                            A  1760    ;  133	        return return_info;
                            A  1761    .LINE 133
@@ -1781,7 +1781,7 @@ PC     Object              I  Line    Source
 0B059B DD4EFF              A  1777    	LD	C,(IX+%FFFFFFFF)
 0B059E 0600                A  1778    	LD	B,%0
 0B05A0 C5                  A  1779    	PUSH	BC
-0B05A1 CD 9F 20 0B         A  1780    	CALL	_mos_getfil
+0B05A1 CD 81 20 0B         A  1780    	CALL	_mos_getfil
 0B05A5 C1                  A  1781    	POP	BC
 0B05A6 DD2FC8              A  1782    	LD	(IX+%FFFFFFC8),HL
                            A  1783    ;  136	
@@ -1794,7 +1794,7 @@ PC     Object              I  Line    Source
 0B05B1 DD4EFF              A  1790    	LD	C,(IX+%FFFFFFFF)
 0B05B4 0600                A  1791    	LD	B,%0
 0B05B6 C5                  A  1792    	PUSH	BC
-0B05B7 CD 46 20 0B         A  1793    	CALL	_mos_fread
+0B05B7 CD 28 20 0B         A  1793    	CALL	_mos_fread
 0B05BB C1                  A  1794    	POP	BC
 0B05BC C1                  A  1795    	POP	BC
 0B05BD C1                  A  1796    	POP	BC
@@ -1849,7 +1849,7 @@ PC     Object              I  Line    Source
                            A  1845    
 0B05FD ED231C              A  1846    	LEA	HL,IY+%1C
 0B0600 ED07                A  1847    	LD	BC,(HL)
-0B0602 CD 23 24 0B         A  1848    	CALL	__stoiu
+0B0602 CD 05 24 0B         A  1848    	CALL	__stoiu
 0B0606 E5C1                A  1849    	LD	BC,HL
 0B0608 AF                  A  1850    	XOR	A,A
 0B0609 DD0FFB              A  1851    	LD	(IX+%FFFFFFFB),BC
@@ -1873,23 +1873,23 @@ PC     Object              I  Line    Source
 0B061E DD27E6              A  1869    	LD	HL,(IX+%FFFFFFE6)
 0B0621 DD5EE9              A  1870    	LD	E,(IX+%FFFFFFE9)
 0B0624 DD7EFE              A  1871    	LD	A,(IX+%FFFFFFFE)
-0B0627 CD 98 26 0B         A  1872    	CALL	__lmuls
+0B0627 CD 7A 26 0B         A  1872    	CALL	__lmuls
 0B062B 01080000            A  1873    	LD	BC,8
 0B062F AF                  A  1874    	XOR	A,A
-0B0630 CD AF 24 0B         A  1875    	CALL	__ldivs
+0B0630 CD 91 24 0B         A  1875    	CALL	__ldivs
 0B0634 E5                  A  1876    	PUSH	HL
 0B0635 C5                  A  1877    	PUSH	BC
 0B0636 E5                  A  1878    	PUSH	HL
 0B0637 FDE5E1              A  1879    	LD	HL,IY
 0B063A 0171FBFF            A  1880    	LD	BC,-1167
-0B063E CD 82 22 0B         A  1881    	CALL	__istix
+0B063E CD 64 22 0B         A  1881    	CALL	__istix
 0B0642 E1                  A  1882    	POP	HL
 0B0643 C1                  A  1883    	POP	BC
-0B0644 CD CF 21 0B         A  1884    	CALL	_malloc
+0B0644 CD B1 21 0B         A  1884    	CALL	_malloc
 0B0648 C5                  A  1885    	PUSH	BC
 0B0649 0171FBFF            A  1886    	LD	BC,-1167
 0B064D E5                  A  1887    	PUSH	HL
-0B064E CD 05 27 0B         A  1888    	CALL	__ildix
+0B064E CD E7 26 0B         A  1888    	CALL	__ildix
 0B0652 E5FDE1              A  1889    	LD	IY,HL
 0B0655 E1                  A  1890    	POP	HL
 0B0656 C1                  A  1891    	POP	BC
@@ -1903,13 +1903,13 @@ PC     Object              I  Line    Source
 0B065E DD5EDE              A  1899    	LD	E,(IX+%FFFFFFDE)
 0B0661 01000000            A  1900    	LD	BC,0
 0B0665 AF                  A  1901    	XOR	A,A
-0B0666 CD 1E 26 0B         A  1902    	CALL	__lcmpu
+0B0666 CD 00 26 0B         A  1902    	CALL	__lcmpu
 0B066A 20 1C               A  1903    	JR	NZ,L_42
 0B066C DD27FB              A  1904    	LD	HL,(IX+%FFFFFFFB)
 0B066F DD5EFE              A  1905    	LD	E,(IX+%FFFFFFFE)
 0B0672 01080000            A  1906    	LD	BC,8
 0B0676 AF                  A  1907    	XOR	A,A
-0B0677 CD 1E 26 0B         A  1908    	CALL	__lcmps
+0B0677 CD 00 26 0B         A  1908    	CALL	__lcmps
 0B067B 20 0B               A  1909    	JR	NZ,L_42
                            A  1910    ;  150	        color_table_size = 256;
                            A  1911    .LINE 150
@@ -1931,7 +1931,7 @@ PC     Object              I  Line    Source
 0B068B 1E00                A  1927    	LD	E,%0
 0B068D DD07DB              A  1928    	LD	BC,(IX+%FFFFFFDB)
 0B0690 DD7EDE              A  1929    	LD	A,(IX+%FFFFFFDE)
-0B0693 CD 1E 26 0B         A  1930    	CALL	__lcmpu
+0B0693 CD 00 26 0B         A  1930    	CALL	__lcmpu
 0B0697 30 22               A  1931    	JR	NC,L_41
 0B0699 DD27DB              A  1932    	LD	HL,(IX+%FFFFFFDB)
 0B069C 29                  A  1933    	ADD	HL,HL
@@ -1945,7 +1945,7 @@ PC     Object              I  Line    Source
 0B06AA DD4EFF              A  1941    	LD	C,(IX+%FFFFFFFF)
 0B06AD 0600                A  1942    	LD	B,%0
 0B06AF C5                  A  1943    	PUSH	BC
-0B06B0 CD 46 20 0B         A  1944    	CALL	_mos_fread
+0B06B0 CD 28 20 0B         A  1944    	CALL	_mos_fread
 0B06B4 C1                  A  1945    	POP	BC
 0B06B5 C1                  A  1946    	POP	BC
 0B06B6 C1                  A  1947    	POP	BC
@@ -1958,7 +1958,7 @@ PC     Object              I  Line    Source
 0B06BB 21280000            A  1954    	LD	HL,40
 0B06BF DD07C4              A  1955    	LD	BC,(IX+%FFFFFFC4)
 0B06C2 DD7EC7              A  1956    	LD	A,(IX+%FFFFFFC7)
-0B06C5 CD 1E 26 0B         A  1957    	CALL	__lcmpu
+0B06C5 CD 00 26 0B         A  1957    	CALL	__lcmpu
 0B06C9 D2 9C 07 0B         A  1958    	JR	NC,L_46
                            A  1959    ;  156	
                            A  1960    ;  157	        i = biSize - 40;
@@ -1968,7 +1968,7 @@ PC     Object              I  Line    Source
 0B06D0 DD5EC7              A  1964    	LD	E,(IX+%FFFFFFC7)
 0B06D3 01D8FFFF            A  1965    	LD	BC,16777176
 0B06D7 3EFF                A  1966    	LD	A,%FF
-0B06D9 CD C4 20 0B         A  1967    	CALL	__ladd
+0B06D9 CD A6 20 0B         A  1967    	CALL	__ladd
 0B06DD DD2FF3              A  1968    	LD	(IX+%FFFFFFF3),HL
 0B06E0 DD73F6              A  1969    	LD	(IX+%FFFFFFF6),E
                            A  1970    ;  158	        while (i--> 0) {
@@ -1986,14 +1986,14 @@ PC     Object              I  Line    Source
 0B06EC E5                  A  1982    	PUSH	HL
 0B06ED FDE5E1              A  1983    	LD	HL,IY
 0B06F0 0171FBFF            A  1984    	LD	BC,-1167
-0B06F4 CD 82 22 0B         A  1985    	CALL	__istix
+0B06F4 CD 64 22 0B         A  1985    	CALL	__istix
 0B06F8 E1                  A  1986    	POP	HL
 0B06F9 C1                  A  1987    	POP	BC
-0B06FA CD 46 1F 0B         A  1988    	CALL	_mos_fgetc
+0B06FA CD 28 1F 0B         A  1988    	CALL	_mos_fgetc
 0B06FE C5                  A  1989    	PUSH	BC
 0B06FF 0171FBFF            A  1990    	LD	BC,-1167
 0B0703 E5                  A  1991    	PUSH	HL
-0B0704 CD 05 27 0B         A  1992    	CALL	__ildix
+0B0704 CD E7 26 0B         A  1992    	CALL	__ildix
 0B0708 E5FDE1              A  1993    	LD	IY,HL
 0B070B E1                  A  1994    	POP	HL
 0B070C C1                  A  1995    	POP	BC
@@ -2004,7 +2004,7 @@ PC     Object              I  Line    Source
                            A  2000    
 0B070E DD27F3              A  2001    	LD	HL,(IX+%FFFFFFF3)
 0B0711 017EFBFF            A  2002    	LD	BC,-1154	; spill
-0B0715 CD 82 22 0B         A  2003    	CALL	__istix
+0B0715 CD 64 22 0B         A  2003    	CALL	__istix
 0B0719 DD66F6              A  2004    	LD	H,(IX+%FFFFFFF6)
 0B071C FDE5                A  2005    	PUSH	IY
 0B071E FD217CFB FF         A  2006    	LD	IY,-1156	; spill
@@ -2016,7 +2016,7 @@ PC     Object              I  Line    Source
 0B0730 DD5EF6              A  2012    	LD	E,(IX+%FFFFFFF6)
 0B0733 01FFFFFF            A  2013    	LD	BC,16777215
 0B0737 3EFF                A  2014    	LD	A,%FF
-0B0739 CD C4 20 0B         A  2015    	CALL	__ladd
+0B0739 CD A6 20 0B         A  2015    	CALL	__ladd
 0B073D DD2FF3              A  2016    	LD	(IX+%FFFFFFF3),HL
 0B0740 DD73F6              A  2017    	LD	(IX+%FFFFFFF6),E
 0B0743 B7                  A  2018    	OR	A,A
@@ -2040,15 +2040,15 @@ PC     Object              I  Line    Source
 0B0773 FD6600              A  2036    	LD	H,(IY)
 0B0776 FDE1                A  2037    	POP	IY
 0B0778 0181FBFF            A  2038    	LD	BC,-1151	; spill
-0B077C CD 82 22 0B         A  2039    	CALL	__istix
+0B077C CD 64 22 0B         A  2039    	CALL	__istix
 0B0780 017EFBFF            A  2040    	LD	BC,-1154	; unspill
-0B0784 CD 05 27 0B         A  2041    	CALL	__ildix
+0B0784 CD E7 26 0B         A  2041    	CALL	__ildix
 0B0788 E5C1                A  2042    	LD	BC,HL
 0B078A C5                  A  2043    	PUSH	BC
 0B078B 0181FBFF            A  2044    	LD	BC,-1151	; unspill
-0B078F CD 05 27 0B         A  2045    	CALL	__ildix
+0B078F CD E7 26 0B         A  2045    	CALL	__ildix
 0B0793 C1                  A  2046    	POP	BC
-0B0794 CD 1E 26 0B         A  2047    	CALL	__lcmps
+0B0794 CD 00 26 0B         A  2047    	CALL	__lcmps
 0B0798 FA E5 06 0B         A  2048    	JP	M,L_38
                            A  2049    ;  161	
                            A  2050    ;  162	    }
@@ -2063,7 +2063,7 @@ PC     Object              I  Line    Source
 0B079F DD5EFE              A  2059    	LD	E,(IX+%FFFFFFFE)
 0B07A2 01200000            A  2060    	LD	BC,32
 0B07A6 AF                  A  2061    	XOR	A,A
-0B07A7 CD 1E 26 0B         A  2062    	CALL	__lcmps
+0B07A7 CD 00 26 0B         A  2062    	CALL	__lcmps
 0B07AB 20 04               A  2063    	JR	NZ,L__35
 0B07AD 3E01                A  2064    	LD	A,%1
 0B07AF 18 01               A  2065    	JR	L__36
@@ -2077,22 +2077,22 @@ PC     Object              I  Line    Source
 0B07BB DD5EFE              A  2073    	LD	E,(IX+%FFFFFFFE)
 0B07BE 01180000            A  2074    	LD	BC,24
 0B07C2 AF                  A  2075    	XOR	A,A
-0B07C3 CD 1E 26 0B         A  2076    	CALL	__lcmps
+0B07C3 CD 00 26 0B         A  2076    	CALL	__lcmps
 0B07C7 28 44               A  2077    	JR	Z,L_47
 0B07C9 DD27FB              A  2078    	LD	HL,(IX+%FFFFFFFB)
 0B07CC DD5EFE              A  2079    	LD	E,(IX+%FFFFFFFE)
 0B07CF 01080000            A  2080    	LD	BC,8
 0B07D3 AF                  A  2081    	XOR	A,A
-0B07D4 CD 1E 26 0B         A  2082    	CALL	__lcmps
+0B07D4 CD 00 26 0B         A  2082    	CALL	__lcmps
 0B07D8 28 33               A  2083    	JR	Z,L_47
                            A  2084    ;  165	        printf("Error: unsupported bit 
                            A  2085    .LINE 165
                            A  2086    
-0B07DA 01 29 24 0B         A  2087    	LD	BC,___print_uputch
-0B07DE ED43 59 27 0B       A  2088    	LD	(___print_xputch),BC
-0B07E3 01 7A 27 0B         A  2089    	LD	BC,L__40
+0B07DA 01 0B 24 0B         A  2087    	LD	BC,___print_uputch
+0B07DE ED43 3B 27 0B       A  2088    	LD	(___print_xputch),BC
+0B07E3 01 5C 27 0B         A  2089    	LD	BC,L__40
 0B07E7 C5                  A  2090    	PUSH	BC
-0B07E8 CD 8E 22 0B         A  2091    	CALL	___print_sendstring
+0B07E8 CD 70 22 0B         A  2091    	CALL	___print_sendstring
 0B07EC C1                  A  2092    	POP	BC
                            A  2093    ;  166	        mos_fclose(file);
                            A  2094    .LINE 166
@@ -2100,7 +2100,7 @@ PC     Object              I  Line    Source
 0B07ED DD4EFF              A  2096    	LD	C,(IX+%FFFFFFFF)
 0B07F0 0600                A  2097    	LD	B,%0
 0B07F2 C5                  A  2098    	PUSH	BC
-0B07F3 CD 31 1F 0B         A  2099    	CALL	_mos_fclose
+0B07F3 CD 13 1F 0B         A  2099    	CALL	_mos_fclose
 0B07F7 C1                  A  2100    	POP	BC
                            A  2101    ;  167	        return return_info;
                            A  2102    .LINE 167
@@ -2124,21 +2124,21 @@ PC     Object              I  Line    Source
 0B0810 DD5EFE              A  2120    	LD	E,(IX+%FFFFFFFE)
 0B0813 01080000            A  2121    	LD	BC,8
 0B0817 AF                  A  2122    	XOR	A,A
-0B0818 CD AF 24 0B         A  2123    	CALL	__ldivs
+0B0818 CD 91 24 0B         A  2123    	CALL	__ldivs
 0B081C DD07E6              A  2124    	LD	BC,(IX+%FFFFFFE6)
 0B081F DD7EE9              A  2125    	LD	A,(IX+%FFFFFFE9)
-0B0822 CD 98 26 0B         A  2126    	CALL	__lmuls
+0B0822 CD 7A 26 0B         A  2126    	CALL	__lmuls
 0B0826 01040000            A  2127    	LD	BC,4
 0B082A AF                  A  2128    	XOR	A,A
-0B082B CD 3D 26 0B         A  2129    	CALL	__lrems
+0B082B CD 1F 26 0B         A  2129    	CALL	__lrems
 0B082F 7B                  A  2130    	LD	A,E
 0B0830 E5C1                A  2131    	LD	BC,HL
 0B0832 21040000            A  2132    	LD	HL,4
 0B0836 1E00                A  2133    	LD	E,%0
-0B0838 CD 3D 25 0B         A  2134    	CALL	__lsub
+0B0838 CD 1F 25 0B         A  2134    	CALL	__lsub
 0B083C 01040000            A  2135    	LD	BC,4
 0B0840 AF                  A  2136    	XOR	A,A
-0B0841 CD 3D 26 0B         A  2137    	CALL	__lrems
+0B0841 CD 1F 26 0B         A  2137    	CALL	__lrems
 0B0845 DD2FCE              A  2138    	LD	(IX+%FFFFFFCE),HL
 0B0848 DD73D1              A  2139    	LD	(IX+%FFFFFFD1),E
                            A  2140    ;  171	
@@ -2148,28 +2148,28 @@ PC     Object              I  Line    Source
 0B084B DD4E0C              A  2144    	LD	C,(IX+%C)
 0B084E 0600                A  2145    	LD	B,%0
 0B0850 C5                  A  2146    	PUSH	BC
-0B0851 CD 60 15 0B         A  2147    	CALL	_vdp_bitmapSelect
+0B0851 CD 42 15 0B         A  2147    	CALL	_vdp_bitmapSelect
 0B0855 C1                  A  2148    	POP	BC
                            A  2149    ;  173	    putch(23); // vdu_sys
                            A  2150    .LINE 173
                            A  2151    
 0B0856 01170000            A  2152    	LD	BC,23
 0B085A C5                  A  2153    	PUSH	BC
-0B085B CD C1 1C 0B         A  2154    	CALL	_putch
+0B085B CD A3 1C 0B         A  2154    	CALL	_putch
 0B085F C1                  A  2155    	POP	BC
                            A  2156    ;  174	    putch(27); // sprite command
                            A  2157    .LINE 174
                            A  2158    
 0B0860 011B0000            A  2159    	LD	BC,27
 0B0864 C5                  A  2160    	PUSH	BC
-0B0865 CD C1 1C 0B         A  2161    	CALL	_putch
+0B0865 CD A3 1C 0B         A  2161    	CALL	_putch
 0B0869 C1                  A  2162    	POP	BC
                            A  2163    ;  175	    putch(1); // send data to selected 
                            A  2164    .LINE 175
                            A  2165    
 0B086A 01010000            A  2166    	LD	BC,1
 0B086E C5                  A  2167    	PUSH	BC
-0B086F CD C1 1C 0B         A  2168    	CALL	_putch
+0B086F CD A3 1C 0B         A  2168    	CALL	_putch
 0B0873 C1                  A  2169    	POP	BC
                            A  2170    ;  176	
                            A  2171    ;  177	    write16bit(width);
@@ -2177,14 +2177,14 @@ PC     Object              I  Line    Source
                            A  2173    
 0B0874 DD07E6              A  2174    	LD	BC,(IX+%FFFFFFE6)
 0B0877 C5                  A  2175    	PUSH	BC
-0B0878 CD FF 10 0B         A  2176    	CALL	_write16bit
+0B0878 CD E1 10 0B         A  2176    	CALL	_write16bit
 0B087C C1                  A  2177    	POP	BC
                            A  2178    ;  178	    write16bit(height);
                            A  2179    .LINE 178
                            A  2180    
 0B087D DD07E1              A  2181    	LD	BC,(IX+%FFFFFFE1)
 0B0880 C5                  A  2182    	PUSH	BC
-0B0881 CD FF 10 0B         A  2183    	CALL	_write16bit
+0B0881 CD E1 10 0B         A  2183    	CALL	_write16bit
 0B0885 C1                  A  2184    	POP	BC
                            A  2185    ;  179		
                            A  2186    ;  180	
@@ -2198,7 +2198,7 @@ PC     Object              I  Line    Source
 0B0889 DD5EFE              A  2194    	LD	E,(IX+%FFFFFFFE)
 0B088C 01080000            A  2195    	LD	BC,8
 0B0890 AF                  A  2196    	XOR	A,A
-0B0891 CD 1E 26 0B         A  2197    	CALL	__lcmps
+0B0891 CD 00 26 0B         A  2197    	CALL	__lcmps
 0B0895 C2 E8 09 0B         A  2198    	JR	NZ,L_68
                            A  2199    ;  185	
                            A  2200    ;  186	        for (y = height - 1; y >= 0; y-
@@ -2208,7 +2208,7 @@ PC     Object              I  Line    Source
 0B089C DD5EE4              A  2204    	LD	E,(IX+%FFFFFFE4)
 0B089F 01FFFFFF            A  2205    	LD	BC,16777215
 0B08A3 3EFF                A  2206    	LD	A,%FF
-0B08A5 CD C4 20 0B         A  2207    	CALL	__ladd
+0B08A5 CD A6 20 0B         A  2207    	CALL	__ladd
 0B08A9 DD2FF7              A  2208    	LD	(IX+%FFFFFFF7),HL
 0B08AC DD73FA              A  2209    	LD	(IX+%FFFFFFFA),E
 0B08AF C3 C7 09 0B         A  2210    	JR	L_60
@@ -2229,7 +2229,7 @@ PC     Object              I  Line    Source
 0B08C2 DD4EFF              A  2225    	LD	C,(IX+%FFFFFFFF)
 0B08C5 0600                A  2226    	LD	B,%0
 0B08C7 C5                  A  2227    	PUSH	BC
-0B08C8 CD 46 1F 0B         A  2228    	CALL	_mos_fgetc
+0B08C8 CD 28 1F 0B         A  2228    	CALL	_mos_fgetc
 0B08CC C1                  A  2229    	POP	BC
 0B08CD DD77DF              A  2230    	LD	(IX+%FFFFFFDF),A
                            A  2231    ;  190	                b = color_table[index *
@@ -2281,7 +2281,7 @@ PC     Object              I  Line    Source
 0B091F B7ED62              A  2277    	UEXT	HL
 0B0922 6F                  A  2278    	LD	L,A
 0B0923 E5                  A  2279    	PUSH	HL
-0B0924 CD C1 1C 0B         A  2280    	CALL	_putch
+0B0924 CD A3 1C 0B         A  2280    	CALL	_putch
 0B0928 C1                  A  2281    	POP	BC
                            A  2282    ;  194	                putch(g);
                            A  2283    .LINE 194
@@ -2290,7 +2290,7 @@ PC     Object              I  Line    Source
 0B092C B7ED62              A  2286    	UEXT	HL
 0B092F 6F                  A  2287    	LD	L,A
 0B0930 E5                  A  2288    	PUSH	HL
-0B0931 CD C1 1C 0B         A  2289    	CALL	_putch
+0B0931 CD A3 1C 0B         A  2289    	CALL	_putch
 0B0935 C1                  A  2290    	POP	BC
                            A  2291    ;  195	                putch(r);
                            A  2292    .LINE 195
@@ -2299,12 +2299,12 @@ PC     Object              I  Line    Source
 0B0939 B7ED62              A  2295    	UEXT	HL
 0B093C 6F                  A  2296    	LD	L,A
 0B093D E5                  A  2297    	PUSH	HL
-0B093E CD C1 1C 0B         A  2298    	CALL	_putch
+0B093E CD A3 1C 0B         A  2298    	CALL	_putch
 0B0942 C1                  A  2299    	POP	BC
 0B0943 DD27D7              A  2300    	LD	HL,(IX+%FFFFFFD7)
 0B0946 DD5EDA              A  2301    	LD	E,(IX+%FFFFFFDA)
 0B0949 3E01                A  2302    	LD	A,%1
-0B094B CD B5 20 0B         A  2303    	CALL	__ladd_b
+0B094B CD 97 20 0B         A  2303    	CALL	__ladd_b
 0B094F DD2FD7              A  2304    	LD	(IX+%FFFFFFD7),HL
 0B0952 DD73DA              A  2305    	LD	(IX+%FFFFFFDA),E
                            A  2306    ;  196	
@@ -2316,7 +2316,7 @@ PC     Object              I  Line    Source
 0B0958 DD5EDA              A  2312    	LD	E,(IX+%FFFFFFDA)
 0B095B DD07E6              A  2313    	LD	BC,(IX+%FFFFFFE6)
 0B095E DD7EE9              A  2314    	LD	A,(IX+%FFFFFFE9)
-0B0961 CD 1E 26 0B         A  2315    	CALL	__lcmps
+0B0961 CD 00 26 0B         A  2315    	CALL	__lcmps
 0B0965 FA C2 08 0B         A  2316    	JP	M,L_50
                            A  2317    ;  198	
                            A  2318    ;  199	            for (i = 0; i < row_padding
@@ -2334,12 +2334,12 @@ PC     Object              I  Line    Source
 0B0976 DD4EFF              A  2330    	LD	C,(IX+%FFFFFFFF)
 0B0979 0600                A  2331    	LD	B,%0
 0B097B C5                  A  2332    	PUSH	BC
-0B097C CD 46 1F 0B         A  2333    	CALL	_mos_fgetc
+0B097C CD 28 1F 0B         A  2333    	CALL	_mos_fgetc
 0B0980 C1                  A  2334    	POP	BC
 0B0981 DD27F3              A  2335    	LD	HL,(IX+%FFFFFFF3)
 0B0984 DD5EF6              A  2336    	LD	E,(IX+%FFFFFFF6)
 0B0987 3E01                A  2337    	LD	A,%1
-0B0989 CD B5 20 0B         A  2338    	CALL	__ladd_b
+0B0989 CD 97 20 0B         A  2338    	CALL	__ladd_b
 0B098D DD2FF3              A  2339    	LD	(IX+%FFFFFFF3),HL
 0B0990 DD73F6              A  2340    	LD	(IX+%FFFFFFF6),E
                            A  2341    ;  201	            }
@@ -2350,7 +2350,7 @@ PC     Object              I  Line    Source
 0B0996 DD5EF6              A  2346    	LD	E,(IX+%FFFFFFF6)
 0B0999 DD07CE              A  2347    	LD	BC,(IX+%FFFFFFCE)
 0B099C DD7ED1              A  2348    	LD	A,(IX+%FFFFFFD1)
-0B099F CD 1E 26 0B         A  2349    	CALL	__lcmps
+0B099F CD 00 26 0B         A  2349    	CALL	__lcmps
 0B09A3 FA AD 09 0B         A  2350    	JP	M,L__48
 0B09A7 EA 76 09 0B         A  2351    	JP	PE,L_54
 0B09AB 18 04               A  2352    	JR	L__49
@@ -2361,7 +2361,7 @@ PC     Object              I  Line    Source
 0B09B4 DD5EFA              A  2357    	LD	E,(IX+%FFFFFFFA)
 0B09B7 01FFFFFF            A  2358    	LD	BC,16777215
 0B09BB 3EFF                A  2359    	LD	A,%FF
-0B09BD CD C4 20 0B         A  2360    	CALL	__ladd
+0B09BD CD A6 20 0B         A  2360    	CALL	__ladd
 0B09C1 DD2FF7              A  2361    	LD	(IX+%FFFFFFF7),HL
 0B09C4 DD73FA              A  2362    	LD	(IX+%FFFFFFFA),E
                            A  2363    ;  202	
@@ -2373,7 +2373,7 @@ PC     Object              I  Line    Source
 0B09CA DD5EFA              A  2369    	LD	E,(IX+%FFFFFFFA)
 0B09CD 01000000            A  2370    	LD	BC,0
 0B09D1 AF                  A  2371    	XOR	A,A
-0B09D2 CD 1E 26 0B         A  2372    	CALL	__lcmps
+0B09D2 CD 00 26 0B         A  2372    	CALL	__lcmps
 0B09D6 F2 E0 09 0B         A  2373    	JP	P,L__50
 0B09DA EA B3 08 0B         A  2374    	JP	PE,L_58
 0B09DE 18 04               A  2375    	JR	L__51
@@ -2393,7 +2393,7 @@ PC     Object              I  Line    Source
 0B09F1 DD5EFE              A  2389    	LD	E,(IX+%FFFFFFFE)
 0B09F4 01180000            A  2390    	LD	BC,24
 0B09F8 AF                  A  2391    	XOR	A,A
-0B09F9 CD 1E 26 0B         A  2392    	CALL	__lcmps
+0B09F9 CD 00 26 0B         A  2392    	CALL	__lcmps
 0B09FD C2 84 0B 0B         A  2393    	JR	NZ,L_69
 0B0A01                     A  2394    L_66:
                            A  2395    ;  206	        int non_pad_row = width * bit_d
@@ -2403,10 +2403,10 @@ PC     Object              I  Line    Source
 0B0A04 DD5EE9              A  2399    	LD	E,(IX+%FFFFFFE9)
 0B0A07 DD07FB              A  2400    	LD	BC,(IX+%FFFFFFFB)
 0B0A0A DD7EFE              A  2401    	LD	A,(IX+%FFFFFFFE)
-0B0A0D CD 98 26 0B         A  2402    	CALL	__lmuls
+0B0A0D CD 7A 26 0B         A  2402    	CALL	__lmuls
 0B0A11 01080000            A  2403    	LD	BC,8
 0B0A15 AF                  A  2404    	XOR	A,A
-0B0A16 CD AF 24 0B         A  2405    	CALL	__ldivs
+0B0A16 CD 91 24 0B         A  2405    	CALL	__ldivs
 0B0A1A DD2FEA              A  2406    	LD	(IX+%FFFFFFEA),HL
 0B0A1D DD73ED              A  2407    	LD	(IX+%FFFFFFED),E
 0B0A20 DD2FBD              A  2408    	LD	(IX+%FFFFFFBD),HL
@@ -2417,29 +2417,29 @@ PC     Object              I  Line    Source
                            A  2413    
 0B0A23 E5C1                A  2414    	LD	BC,HL
 0B0A25 C5                  A  2415    	PUSH	BC
-0B0A26 CD CF 21 0B         A  2416    	CALL	_malloc
+0B0A26 CD B1 21 0B         A  2416    	CALL	_malloc
 0B0A2A C1                  A  2417    	POP	BC
 0B0A2B DD2FD4              A  2418    	LD	(IX+%FFFFFFD4),HL
                            A  2419    ;  210			mos_flseek(file, image_start + 
                            A  2420    .LINE 210
                            A  2421    
 0B0A2E DD07EA              A  2422    	LD	BC,(IX+%FFFFFFEA)
-0B0A31 CD F6 25 0B         A  2423    	CALL	__itol
+0B0A31 CD D8 25 0B         A  2423    	CALL	__itol
 0B0A35 DD27CE              A  2424    	LD	HL,(IX+%FFFFFFCE)
 0B0A38 DD5ED1              A  2425    	LD	E,(IX+%FFFFFFD1)
-0B0A3B CD C4 20 0B         A  2426    	CALL	__ladd
+0B0A3B CD A6 20 0B         A  2426    	CALL	__ladd
 0B0A3F 7B                  A  2427    	LD	A,E
 0B0A40 FD217AFB FF         A  2428    	LD	IY,-1158	; spill
 0B0A45 DDE5C1              A  2429    	LD	BC,IX	; spill
 0B0A48 FD09                A  2430    	ADD	IY,BC
 0B0A4A FD7700              A  2431    	LD	(IY),A
 0B0A4D 0174FBFF            A  2432    	LD	BC,-1164	; spill
-0B0A51 CD 82 22 0B         A  2433    	CALL	__istix
+0B0A51 CD 64 22 0B         A  2433    	CALL	__istix
 0B0A55 DD27E1              A  2434    	LD	HL,(IX+%FFFFFFE1)
 0B0A58 DD5EE4              A  2435    	LD	E,(IX+%FFFFFFE4)
 0B0A5B 01010000            A  2436    	LD	BC,1
 0B0A5F AF                  A  2437    	XOR	A,A
-0B0A60 CD 3D 25 0B         A  2438    	CALL	__lsub
+0B0A60 CD 1F 25 0B         A  2438    	CALL	__lsub
 0B0A64 7B                  A  2439    	LD	A,E
 0B0A65 E5C1                A  2440    	LD	BC,HL
 0B0A67 C5                  A  2441    	PUSH	BC
@@ -2461,27 +2461,27 @@ PC     Object              I  Line    Source
 0B0A92 C1                  A  2457    	POP	BC
 0B0A93 C5E1                A  2458    	LD	HL,BC
 0B0A95 0177FBFF            A  2459    	LD	BC,-1161	; spill
-0B0A99 CD 82 22 0B         A  2460    	CALL	__istix
+0B0A99 CD 64 22 0B         A  2460    	CALL	__istix
 0B0A9D 0174FBFF            A  2461    	LD	BC,-1164	; unspill
-0B0AA1 CD 05 27 0B         A  2462    	CALL	__ildix
+0B0AA1 CD E7 26 0B         A  2462    	CALL	__ildix
 0B0AA5 E5C1                A  2463    	LD	BC,HL
 0B0AA7 C5E1                A  2464    	LD	HL,BC
 0B0AA9 0177FBFF            A  2465    	LD	BC,-1161	; unspill
 0B0AAD E5                  A  2466    	PUSH	HL
-0B0AAE CD 05 27 0B         A  2467    	CALL	__ildix
+0B0AAE CD E7 26 0B         A  2467    	CALL	__ildix
 0B0AB2 E5C1                A  2468    	LD	BC,HL
 0B0AB4 E1                  A  2469    	POP	HL
-0B0AB5 CD 98 26 0B         A  2470    	CALL	__lmulu
+0B0AB5 CD 7A 26 0B         A  2470    	CALL	__lmulu
 0B0AB9 DD07C0              A  2471    	LD	BC,(IX+%FFFFFFC0)
 0B0ABC DD7EC3              A  2472    	LD	A,(IX+%FFFFFFC3)
-0B0ABF CD C4 20 0B         A  2473    	CALL	__ladd
+0B0ABF CD A6 20 0B         A  2473    	CALL	__ladd
 0B0AC3 4B                  A  2474    	LD	C,E
 0B0AC4 0600                A  2475    	LD	B,%0
 0B0AC6 C5                  A  2476    	PUSH	BC
 0B0AC7 E5                  A  2477    	PUSH	HL
 0B0AC8 DD4EFF              A  2478    	LD	C,(IX+%FFFFFFFF)
 0B0ACB C5                  A  2479    	PUSH	BC
-0B0ACC CD 80 20 0B         A  2480    	CALL	_mos_flseek
+0B0ACC CD 62 20 0B         A  2480    	CALL	_mos_flseek
 0B0AD0 C1                  A  2481    	POP	BC
 0B0AD1 C1                  A  2482    	POP	BC
 0B0AD2 C1                  A  2483    	POP	BC
@@ -2493,7 +2493,7 @@ PC     Object              I  Line    Source
 0B0AD6 DD5EE4              A  2489    	LD	E,(IX+%FFFFFFE4)
 0B0AD9 01FFFFFF            A  2490    	LD	BC,16777215
 0B0ADD 3EFF                A  2491    	LD	A,%FF
-0B0ADF CD C4 20 0B         A  2492    	CALL	__ladd
+0B0ADF CD A6 20 0B         A  2492    	CALL	__ladd
 0B0AE3 DD2FF7              A  2493    	LD	(IX+%FFFFFFF7),HL
 0B0AE6 DD73FA              A  2494    	LD	(IX+%FFFFFFFA),E
 0B0AE9 C3 71 0B 0B         A  2495    	JR	L_65
@@ -2509,7 +2509,7 @@ PC     Object              I  Line    Source
 0B0AF5 DD4EFF              A  2505    	LD	C,(IX+%FFFFFFFF)
 0B0AF8 0600                A  2506    	LD	B,%0
 0B0AFA C5                  A  2507    	PUSH	BC
-0B0AFB CD 46 20 0B         A  2508    	CALL	_mos_fread
+0B0AFB CD 28 20 0B         A  2508    	CALL	_mos_fread
 0B0AFF C1                  A  2509    	POP	BC
 0B0B00 C1                  A  2510    	POP	BC
 0B0B01 C1                  A  2511    	POP	BC
@@ -2532,7 +2532,7 @@ PC     Object              I  Line    Source
 0B0B18 C5                  A  2528    	PUSH	BC
 0B0B19 DD07D4              A  2529    	LD	BC,(IX+%FFFFFFD4)
 0B0B1C C5                  A  2530    	PUSH	BC
-0B0B1D CD D9 1C 0B         A  2531    	CALL	_mos_puts
+0B0B1D CD BB 1C 0B         A  2531    	CALL	_mos_puts
 0B0B21 C1                  A  2532    	POP	BC
 0B0B22 C1                  A  2533    	POP	BC
 0B0B23 C1                  A  2534    	POP	BC
@@ -2542,25 +2542,25 @@ PC     Object              I  Line    Source
 0B0B24 DD27EA              A  2538    	LD	HL,(IX+%FFFFFFEA)
 0B0B27 29                  A  2539    	ADD	HL,HL
 0B0B28 E5C1                A  2540    	LD	BC,HL
-0B0B2A CD F6 25 0B         A  2541    	CALL	__itol
+0B0B2A CD D8 25 0B         A  2541    	CALL	__itol
 0B0B2E 5F                  A  2542    	LD	E,A
 0B0B2F C5E1                A  2543    	LD	HL,BC
 0B0B31 DD07CE              A  2544    	LD	BC,(IX+%FFFFFFCE)
 0B0B34 DD7ED1              A  2545    	LD	A,(IX+%FFFFFFD1)
-0B0B37 CD C4 20 0B         A  2546    	CALL	__ladd
+0B0B37 CD A6 20 0B         A  2546    	CALL	__ladd
 0B0B3B 7B                  A  2547    	LD	A,E
 0B0B3C E5C1                A  2548    	LD	BC,HL
 0B0B3E DD31C8              A  2549    	LD	IY,(IX+%FFFFFFC8)
 0B0B41 FD2711              A  2550    	LD	HL,(IY+%11)
 0B0B44 FD5E14              A  2551    	LD	E,(IY+%14)
-0B0B47 CD 3D 25 0B         A  2552    	CALL	__lsub
+0B0B47 CD 1F 25 0B         A  2552    	CALL	__lsub
 0B0B4B 4B                  A  2553    	LD	C,E
 0B0B4C 0600                A  2554    	LD	B,%0
 0B0B4E C5                  A  2555    	PUSH	BC
 0B0B4F E5                  A  2556    	PUSH	HL
 0B0B50 DD4EFF              A  2557    	LD	C,(IX+%FFFFFFFF)
 0B0B53 C5                  A  2558    	PUSH	BC
-0B0B54 CD 80 20 0B         A  2559    	CALL	_mos_flseek
+0B0B54 CD 62 20 0B         A  2559    	CALL	_mos_flseek
 0B0B58 C1                  A  2560    	POP	BC
 0B0B59 C1                  A  2561    	POP	BC
 0B0B5A C1                  A  2562    	POP	BC
@@ -2568,7 +2568,7 @@ PC     Object              I  Line    Source
 0B0B5E DD5EFA              A  2564    	LD	E,(IX+%FFFFFFFA)
 0B0B61 01FFFFFF            A  2565    	LD	BC,16777215
 0B0B65 3EFF                A  2566    	LD	A,%FF
-0B0B67 CD C4 20 0B         A  2567    	CALL	__ladd
+0B0B67 CD A6 20 0B         A  2567    	CALL	__ladd
 0B0B6B DD2FF7              A  2568    	LD	(IX+%FFFFFFF7),HL
 0B0B6E DD73FA              A  2569    	LD	(IX+%FFFFFFFA),E
                            A  2570    ;  218	
@@ -2580,7 +2580,7 @@ PC     Object              I  Line    Source
 0B0B74 DD5EFA              A  2576    	LD	E,(IX+%FFFFFFFA)
 0B0B77 01000000            A  2577    	LD	BC,0
 0B0B7B AF                  A  2578    	XOR	A,A
-0B0B7C CD 1E 26 0B         A  2579    	CALL	__lcmps
+0B0B7C CD 00 26 0B         A  2579    	CALL	__lcmps
 0B0B80 F2 ED 0A 0B         A  2580    	JP	P,L_63
                            A  2581    ;  220	
                            A  2582    ;  221	    }
@@ -2594,14 +2594,14 @@ PC     Object              I  Line    Source
 0B0B84 DD4EFF              A  2590    	LD	C,(IX+%FFFFFFFF)
 0B0B87 0600                A  2591    	LD	B,%0
 0B0B89 C5                  A  2592    	PUSH	BC
-0B0B8A CD 31 1F 0B         A  2593    	CALL	_mos_fclose
+0B0B8A CD 13 1F 0B         A  2593    	CALL	_mos_fclose
 0B0B8E C1                  A  2594    	POP	BC
                            A  2595    ;  224	    free(image_buffer);
                            A  2596    .LINE 224
                            A  2597    
 0B0B8F DD07CB              A  2598    	LD	BC,(IX+%FFFFFFCB)
 0B0B92 C5                  A  2599    	PUSH	BC
-0B0B93 CD CA 20 0B         A  2600    	CALL	_free
+0B0B93 CD AC 20 0B         A  2600    	CALL	_free
 0B0B97 C1                  A  2601    	POP	BC
                            A  2602    ;  225	    //return width * height;
                            A  2603    ;  226		return_info.bmp_width = width;
@@ -2691,23 +2691,23 @@ PC     Object              I  Line    Source
                            A  2687    
                            A  2688    .ENDFUNC "load_bmp_big",231,"_load_bmp_big"
                            A  2689    	SEGMENT STRSECT
-0B275F                     A  2690    L__27:
-0B275F 4572726F 723A2063   A  2691    	DB	"Error: could not open "
-0B2767 6F756C64 206E6F74 
-0B276F 206F7065 6E20 
-0B2775 00                  A  2692    	DB	0
-0B2776                     A  2693    L__28:
-0B2776 2E                  A  2694    	DB	"."
-0B2777 0D0A00              A  2695    	DB	13,10,0
-0B277A                     A  2696    L__40:
-0B277A 4572726F 723A2075   A  2697    	DB	"Error: unsupported bit depth (not 8, 2
-0B2782 6E737570 706F7274 
-0B278A 65642062 69742064 
-0B2792 65707468 20286E6F 
-0B279A 7420382C 20323420 
-0B27A2 6F722033 322D6269 
-0B27AA 74292E 
-0B27AD 0A00                A  2698    	DB	10,0
+0B2741                     A  2690    L__27:
+0B2741 4572726F 723A2063   A  2691    	DB	"Error: could not open "
+0B2749 6F756C64 206E6F74 
+0B2751 206F7065 6E20 
+0B2757 00                  A  2692    	DB	0
+0B2758                     A  2693    L__28:
+0B2758 2E                  A  2694    	DB	"."
+0B2759 0D0A00              A  2695    	DB	13,10,0
+0B275C                     A  2696    L__40:
+0B275C 4572726F 723A2075   A  2697    	DB	"Error: unsupported bit depth (not 8, 2
+0B2764 6E737570 706F7274 
+0B276C 65642062 69742064 
+0B2774 65707468 20286E6F 
+0B277C 7420382C 20323420 
+0B2784 6F722033 322D6269 
+0B278C 74292E 
+0B278F 0A00                A  2698    	DB	10,0
                            A  2699    	SEGMENT CODE
                            A  2700    ;  232	
                            A  2701    ;  233	uint16_t strtou16(const char *str) {
@@ -2862,7 +2862,7 @@ PC     Object              I  Line    Source
                            A  2850    
 0B0C5C 49210A00            A  2851    	LD.LIS	HL,10
 0B0C60 DD07FE              A  2852    	LD	BC,(IX+%FFFFFFFE)
-0B0C63 CD 11 27 0B         A  2853    	CALL	__smulu
+0B0C63 CD F3 26 0B         A  2853    	CALL	__smulu
 0B0C67 DD07FC              A  2854    	LD	BC,(IX+%FFFFFFFC)
 0B0C6A 4009                A  2855    	ADD.SIS	HL,BC
 0B0C6C DD75FE              A  2856    	LD	(IX+%FFFFFFFE),L
@@ -3267,7 +3267,7 @@ PC     Object              I  Line    Source
 0B0DEE 5C                  A  3255    	LD	E,H
 0B0DEF 01300000            A  3256    	LD	BC,48
 0B0DF3 AF                  A  3257    	XOR	A,A
-0B0DF4 CD 3D 25 0B         A  3258    	CALL	__lsub
+0B0DF4 CD 1F 25 0B         A  3258    	CALL	__lsub
 0B0DF8 DD2FF8              A  3259    	LD	(IX+%FFFFFFF8),HL
 0B0DFB DD73FB              A  3260    	LD	(IX+%FFFFFFFB),E
                            A  3261    ;  286	        if (result > maxDiv10 || (resul
@@ -3277,19 +3277,19 @@ PC     Object              I  Line    Source
 0B0E02 1E00                A  3265    	LD	E,%0
 0B0E04 DD07FC              A  3266    	LD	BC,(IX+%FFFFFFFC)
 0B0E07 DD7EFF              A  3267    	LD	A,(IX+%FFFFFFFF)
-0B0E0A CD 1E 26 0B         A  3268    	CALL	__lcmpu
+0B0E0A CD 00 26 0B         A  3268    	CALL	__lcmpu
 0B0E0E 38 23               A  3269    	JR	C,L_111
 0B0E10 DD27FC              A  3270    	LD	HL,(IX+%FFFFFFFC)
 0B0E13 DD5EFF              A  3271    	LD	E,(IX+%FFFFFFFF)
 0B0E16 01999919            A  3272    	LD	BC,1677721
 0B0E1A AF                  A  3273    	XOR	A,A
-0B0E1B CD 1E 26 0B         A  3274    	CALL	__lcmpu
+0B0E1B CD 00 26 0B         A  3274    	CALL	__lcmpu
 0B0E1F 20 18               A  3275    	JR	NZ,L_112
 0B0E21 21050000            A  3276    	LD	HL,5
 0B0E25 1E00                A  3277    	LD	E,%0
 0B0E27 DD07F8              A  3278    	LD	BC,(IX+%FFFFFFF8)
 0B0E2A DD7EFB              A  3279    	LD	A,(IX+%FFFFFFFB)
-0B0E2D CD 1E 26 0B         A  3280    	CALL	__lcmpu
+0B0E2D CD 00 26 0B         A  3280    	CALL	__lcmpu
 0B0E31 30 06               A  3281    	JR	NC,L_112
 0B0E33                     A  3282    L_111:
                            A  3283    ;  287	            return 16777215;
@@ -3308,10 +3308,10 @@ PC     Object              I  Line    Source
 0B0E3C DD5EFF              A  3296    	LD	E,(IX+%FFFFFFFF)
 0B0E3F 010A0000            A  3297    	LD	BC,10
 0B0E43 AF                  A  3298    	XOR	A,A
-0B0E44 CD 98 26 0B         A  3299    	CALL	__lmulu
+0B0E44 CD 7A 26 0B         A  3299    	CALL	__lmulu
 0B0E48 DD07F8              A  3300    	LD	BC,(IX+%FFFFFFF8)
 0B0E4B DD7EFB              A  3301    	LD	A,(IX+%FFFFFFFB)
-0B0E4E CD C4 20 0B         A  3302    	CALL	__ladd
+0B0E4E CD A6 20 0B         A  3302    	CALL	__ladd
 0B0E52 DD2FFC              A  3303    	LD	(IX+%FFFFFFFC),HL
 0B0E55 DD73FF              A  3304    	LD	(IX+%FFFFFFFF),E
                            A  3305    ;  290	        str++;
@@ -3427,42 +3427,42 @@ PC     Object              I  Line    Source
                            A  3415    
                            A  3416    .ENDEF
                            A  3417    
-                           A  3418    .DEFINE "y"
+                           A  3418    .DEFINE "x"
                            A  3419    
                            A  3420    .CLASS 65
                            A  3421    
-                           A  3422    .VALUE -4
+                           A  3422    .VALUE -7
                            A  3423    
                            A  3424    .TYPE 14
                            A  3425    
                            A  3426    .ENDEF
                            A  3427    
-                           A  3428    .DEFINE "x"
+                           A  3428    .DEFINE "bmp"
                            A  3429    
                            A  3430    .CLASS 65
                            A  3431    
-                           A  3432    .VALUE -7
+                           A  3432    .VALUE -12
                            A  3433    
-                           A  3434    .TYPE 14
+                           A  3434    .TAG "NONAME6"
                            A  3435    
-                           A  3436    .ENDEF
+                           A  3436    .TYPE 8
                            A  3437    
-                           A  3438    .DEFINE "bmp"
+                           A  3438    .ENDEF
                            A  3439    
-                           A  3440    .CLASS 65
+                           A  3440    .DEFINE "y"
                            A  3441    
-                           A  3442    .VALUE -12
+                           A  3442    .CLASS 65
                            A  3443    
-                           A  3444    .TAG "NONAME6"
+                           A  3444    .VALUE -18
                            A  3445    
-                           A  3446    .TYPE 8
+                           A  3446    .TYPE 14
                            A  3447    
                            A  3448    .ENDEF
                            A  3449    
 0B0EA5 DDE5                A  3450    	PUSH	IX
 0B0EA7 DD210000 00         A  3451    	LD	IX,0
 0B0EAC DD39                A  3452    	ADD	IX,SP
-0B0EAE ED22E4              A  3453    	LEA	HL,IX+%FFFFFFE4
+0B0EAE ED22DE              A  3453    	LEA	HL,IX+%FFFFFFDE
 0B0EB1 F9                  A  3454    	LD	SP,HL
                            A  3455    ;  297	
                            A  3456    ;  298	    uint24_t x, y;
@@ -3481,12 +3481,12 @@ PC     Object              I  Line    Source
 0B0EBA DD2706              A  3469    	LD	HL,(IX+%6)
 0B0EBD B7                  A  3470    	OR	A,A
 0B0EBE ED42                A  3471    	SBC	HL,BC
-0B0EC0 FA CA 0E 0B         A  3472    	JP	M,L__101
+0B0EC0 FA CA 0E 0B         A  3472    	JP	M,L__105
 0B0EC4 EA F2 0E 0B         A  3473    	JP	PE,L_121
-0B0EC8 18 04               A  3474    	JR	L__102
-0B0ECA                     A  3475    L__101:
+0B0EC8 18 04               A  3474    	JR	L__106
+0B0ECA                     A  3475    L__105:
 0B0ECA E2 F2 0E 0B         A  3476    	JP	PO,L_121
-0B0ECE                     A  3477    L__102:
+0B0ECE                     A  3477    L__106:
 0B0ECE 01040000            A  3478    	LD	BC,4
 0B0ED2 DD2706              A  3479    	LD	HL,(IX+%6)
 0B0ED5 B7                  A  3480    	OR	A,A
@@ -3496,37 +3496,37 @@ PC     Object              I  Line    Source
 0B0EDD 21050000            A  3484    	LD	HL,5
 0B0EE1 B7                  A  3485    	OR	A,A
 0B0EE2 ED42                A  3486    	SBC	HL,BC
-0B0EE4 F2 EE 0E 0B         A  3487    	JP	P,L__103
+0B0EE4 F2 EE 0E 0B         A  3487    	JP	P,L__107
 0B0EE8 EA 21 0F 0B         A  3488    	JP	PE,L_123
-0B0EEC 18 04               A  3489    	JR	L__104
-0B0EEE                     A  3490    L__103:
+0B0EEC 18 04               A  3489    	JR	L__108
+0B0EEE                     A  3490    L__107:
 0B0EEE E2 21 0F 0B         A  3491    	JP	PO,L_123
-0B0EF2                     A  3492    L__104:
+0B0EF2                     A  3492    L__108:
 0B0EF2                     A  3493    L_121:
                            A  3494    ;  305	        printf("Usage is %s <filename> 
                            A  3495    .LINE 305
                            A  3496    
-0B0EF2 01 29 24 0B         A  3497    	LD	BC,___print_uputch
-0B0EF6 ED43 59 27 0B       A  3498    	LD	(___print_xputch),BC
-0B0EFB 01 AF 27 0B         A  3499    	LD	BC,L__95
+0B0EF2 01 0B 24 0B         A  3497    	LD	BC,___print_uputch
+0B0EF6 ED43 3B 27 0B       A  3498    	LD	(___print_xputch),BC
+0B0EFB 01 91 27 0B         A  3499    	LD	BC,L__95
 0B0EFF C5                  A  3500    	PUSH	BC
-0B0F00 CD 8E 22 0B         A  3501    	CALL	___print_sendstring
+0B0F00 CD 70 22 0B         A  3501    	CALL	___print_sendstring
 0B0F04 C1                  A  3502    	POP	BC
 0B0F05 DD2709              A  3503    	LD	HL,(IX+%9)
 0B0F08 ED07                A  3504    	LD	BC,(HL)
 0B0F0A C5                  A  3505    	PUSH	BC
-0B0F0B CD 8E 22 0B         A  3506    	CALL	___print_sendstring
+0B0F0B CD 70 22 0B         A  3506    	CALL	___print_sendstring
 0B0F0F C1                  A  3507    	POP	BC
-0B0F10 01 B9 27 0B         A  3508    	LD	BC,L__96
+0B0F10 01 9B 27 0B         A  3508    	LD	BC,L__96
 0B0F14 C5                  A  3509    	PUSH	BC
-0B0F15 CD 8E 22 0B         A  3510    	CALL	___print_sendstring
+0B0F15 CD 70 22 0B         A  3510    	CALL	___print_sendstring
 0B0F19 C1                  A  3511    	POP	BC
                            A  3512    ;  306	        return 0;
                            A  3513    .LINE 306
                            A  3514    
 0B0F1A B7                  A  3515    	OR	A,A
 0B0F1B ED62                A  3516    	SBC	HL,HL
-0B0F1D C3 FA 10 0B         A  3517    	JR	L_131
+0B0F1D C3 DC 10 0B         A  3517    	JR	L_139
                            A  3518    ;  307	    }
 0B0F21                     A  3519    L_123:
                            A  3520    .LINE 307
@@ -3539,12 +3539,12 @@ PC     Object              I  Line    Source
 0B0F24 21020000            A  3527    	LD	HL,2
 0B0F28 B7                  A  3528    	OR	A,A
 0B0F29 ED42                A  3529    	SBC	HL,BC
-0B0F2B F2 35 0F 0B         A  3530    	JP	P,L__105
-0B0F2F EA 4A 0F 0B         A  3531    	JP	PE,L_129
-0B0F33 18 04               A  3532    	JR	L__106
-0B0F35                     A  3533    L__105:
-0B0F35 E2 4A 0F 0B         A  3534    	JP	PO,L_129
-0B0F39                     A  3535    L__106:
+0B0F2B F2 35 0F 0B         A  3530    	JP	P,L__109
+0B0F2F EA 4A 0F 0B         A  3531    	JP	PE,L_137
+0B0F33 18 04               A  3532    	JR	L__110
+0B0F35                     A  3533    L__109:
+0B0F35 E2 4A 0F 0B         A  3534    	JP	PO,L_137
+0B0F39                     A  3535    L__110:
 0B0F39 DD3109              A  3536    	LD	IY,(IX+%9)
 0B0F3C ED2306              A  3537    	LEA	HL,IY+%6
 0B0F3F ED07                A  3538    	LD	BC,(HL)
@@ -3552,7 +3552,7 @@ PC     Object              I  Line    Source
 0B0F42 CD BF 0C 0B         A  3540    	CALL	_strtou8
 0B0F46 C1                  A  3541    	POP	BC
 0B0F47 DD77FF              A  3542    	LD	(IX+%FFFFFFFF),A
-0B0F4A                     A  3543    L_129:
+0B0F4A                     A  3543    L_137:
                            A  3544    ;  310		
                            A  3545    ;  311	    //vdp_mode(8);
                            A  3546    ;  312		
@@ -3563,326 +3563,321 @@ PC     Object              I  Line    Source
 0B0F4E DD2706              A  3551    	LD	HL,(IX+%6)
 0B0F51 B7                  A  3552    	OR	A,A
 0B0F52 ED42                A  3553    	SBC	HL,BC
-0B0F54 C2 E7 0F 0B         A  3554    	JR	NZ,L_128
+0B0F54 20 25               A  3554    	JR	NZ,L_136
                            A  3555    ;  314	
                            A  3556    ;  315			bmp = load_bmp_big(argv[1], 0);
                            A  3557    .LINE 315
                            A  3558    
-0B0F58 01000000            A  3559    	LD	BC,0
-0B0F5C C5                  A  3560    	PUSH	BC
-0B0F5D DD3109              A  3561    	LD	IY,(IX+%9)
-0B0F60 ED2303              A  3562    	LEA	HL,IY+%3
-0B0F63 ED07                A  3563    	LD	BC,(HL)
-0B0F65 C5                  A  3564    	PUSH	BC
-0B0F66 ED65EF              A  3565    	PEA	IX+%FFFFFFEF
-0B0F69 DD77E4              A  3566    	LD	(IX+%FFFFFFE4),A
-0B0F6C CD 28 05 0B         A  3567    	CALL	_load_bmp_big
-0B0F70 DD7EE4              A  3568    	LD	A,(IX+%FFFFFFE4)
-0B0F73 C1                  A  3569    	POP	BC
-0B0F74 C1                  A  3570    	POP	BC
-0B0F75 C1                  A  3571    	POP	BC
-0B0F76 ED12F4              A  3572    	LEA	DE,IX+%FFFFFFF4
-0B0F79 01050000            A  3573    	LD	BC,5
-0B0F7D EDB0                A  3574    	LDIR	
-                           A  3575    ;  316			x = (getsysvar_scrwidth() - bmp
-                           A  3576    .LINE 316
-                           A  3577    
-0B0F7F DD77E4              A  3578    	LD	(IX+%FFFFFFE4),A
-0B0F82 CD 7A 1D 0B         A  3579    	CALL	_getsysvar_scrwidth
-0B0F86 DD7EE4              A  3580    	LD	A,(IX+%FFFFFFE4)
-0B0F89 E5C1                A  3581    	LD	BC,HL
-0B0F8B CD 23 24 0B         A  3582    	CALL	__stoiu
-0B0F8F E5D1                A  3583    	LD	DE,HL
-0B0F91 DD07F4              A  3584    	LD	BC,(IX+%FFFFFFF4)
-0B0F94 CD 23 24 0B         A  3585    	CALL	__stoiu
-0B0F98 E5C1                A  3586    	LD	BC,HL
-0B0F9A D5E1                A  3587    	LD	HL,DE
-0B0F9C B7                  A  3588    	OR	A,A
-0B0F9D ED42                A  3589    	SBC	HL,BC
-0B0F9F 01020000            A  3590    	LD	BC,2
-0B0FA3 CD BD 25 0B         A  3591    	CALL	__idivs
-0B0FA7 DD2FF9              A  3592    	LD	(IX+%FFFFFFF9),HL
-                           A  3593    ;  317			y = (getsysvar_scrheight() - bm
-                           A  3594    .LINE 317
-                           A  3595    
-0B0FAA DD77E4              A  3596    	LD	(IX+%FFFFFFE4),A
-0B0FAD CD 8D 1D 0B         A  3597    	CALL	_getsysvar_scrheight
-0B0FB1 DD7EE4              A  3598    	LD	A,(IX+%FFFFFFE4)
-0B0FB4 E5C1                A  3599    	LD	BC,HL
-0B0FB6 CD 23 24 0B         A  3600    	CALL	__stoiu
-0B0FBA E5D1                A  3601    	LD	DE,HL
-0B0FBC DD07F6              A  3602    	LD	BC,(IX+%FFFFFFF6)
-0B0FBF CD 23 24 0B         A  3603    	CALL	__stoiu
-0B0FC3 E5C1                A  3604    	LD	BC,HL
-0B0FC5 D5E1                A  3605    	LD	HL,DE
-0B0FC7 B7                  A  3606    	OR	A,A
-0B0FC8 ED42                A  3607    	SBC	HL,BC
-0B0FCA 01020000            A  3608    	LD	BC,2
-0B0FCE CD BD 25 0B         A  3609    	CALL	__idivs
-0B0FD2 DD2FFC              A  3610    	LD	(IX+%FFFFFFFC),HL
-                           A  3611    ;  318			vdp_bitmapDraw(0,0,0);
-                           A  3612    .LINE 318
-                           A  3613    
-0B0FD5 01000000            A  3614    	LD	BC,0
-0B0FD9 C5                  A  3615    	PUSH	BC
-0B0FDA C5                  A  3616    	PUSH	BC
-0B0FDB C5                  A  3617    	PUSH	BC
-0B0FDC CD AA 16 0B         A  3618    	CALL	_vdp_bitmapDraw
-0B0FE0 C1                  A  3619    	POP	BC
-0B0FE1 C1                  A  3620    	POP	BC
-0B0FE2 C1                  A  3621    	POP	BC
-                           A  3622    ;  319			
-                           A  3623    ;  320		} else if (argc == 3) {
-                           A  3624    .LINE 320
-                           A  3625    
-0B0FE3 C3 F7 10 0B         A  3626    	JR	L_130
-0B0FE7                     A  3627    L_128:
-0B0FE7 01030000            A  3628    	LD	BC,3
-0B0FEB DD2706              A  3629    	LD	HL,(IX+%6)
-0B0FEE B7                  A  3630    	OR	A,A
-0B0FEF ED42                A  3631    	SBC	HL,BC
-0B0FF1 C2 88 10 0B         A  3632    	JR	NZ,L_126
-                           A  3633    ;  321			
-                           A  3634    ;  322			bmp = load_bmp_big(argv[1], 0);
-                           A  3635    .LINE 322
+0B0F56 01000000            A  3559    	LD	BC,0
+0B0F5A C5                  A  3560    	PUSH	BC
+0B0F5B DD3109              A  3561    	LD	IY,(IX+%9)
+0B0F5E ED2303              A  3562    	LEA	HL,IY+%3
+0B0F61 ED07                A  3563    	LD	BC,(HL)
+0B0F63 C5                  A  3564    	PUSH	BC
+0B0F64 ED65E9              A  3565    	PEA	IX+%FFFFFFE9
+0B0F67 CD 28 05 0B         A  3566    	CALL	_load_bmp_big
+0B0F6B C1                  A  3567    	POP	BC
+0B0F6C C1                  A  3568    	POP	BC
+0B0F6D C1                  A  3569    	POP	BC
+0B0F6E ED12F4              A  3570    	LEA	DE,IX+%FFFFFFF4
+0B0F71 01050000            A  3571    	LD	BC,5
+0B0F75 EDB0                A  3572    	LDIR	
+                           A  3573    ;  316			
+                           A  3574    ;  317		} else if (argc == 3) {
+                           A  3575    .LINE 317
+                           A  3576    
+0B0F77 C3 D9 10 0B         A  3577    	JR	L_138
+0B0F7B                     A  3578    L_136:
+0B0F7B 01030000            A  3579    	LD	BC,3
+0B0F7F DD2706              A  3580    	LD	HL,(IX+%6)
+0B0F82 B7                  A  3581    	OR	A,A
+0B0F83 ED42                A  3582    	SBC	HL,BC
+0B0F85 20 26               A  3583    	JR	NZ,L_134
+                           A  3584    ;  318			
+                           A  3585    ;  319			bmp = load_bmp_big(argv[1], bit
+                           A  3586    .LINE 319
+                           A  3587    
+0B0F87 DD4EFF              A  3588    	LD	C,(IX+%FFFFFFFF)
+0B0F8A 0600                A  3589    	LD	B,%0
+0B0F8C C5                  A  3590    	PUSH	BC
+0B0F8D DD3109              A  3591    	LD	IY,(IX+%9)
+0B0F90 ED2303              A  3592    	LEA	HL,IY+%3
+0B0F93 ED07                A  3593    	LD	BC,(HL)
+0B0F95 C5                  A  3594    	PUSH	BC
+0B0F96 ED65E4              A  3595    	PEA	IX+%FFFFFFE4
+0B0F99 CD 28 05 0B         A  3596    	CALL	_load_bmp_big
+0B0F9D C1                  A  3597    	POP	BC
+0B0F9E C1                  A  3598    	POP	BC
+0B0F9F C1                  A  3599    	POP	BC
+0B0FA0 ED12F4              A  3600    	LEA	DE,IX+%FFFFFFF4
+0B0FA3 01050000            A  3601    	LD	BC,5
+0B0FA7 EDB0                A  3602    	LDIR	
+                           A  3603    ;  320			
+                           A  3604    ;  321		} else if (argc == 5) {
+                           A  3605    .LINE 321
+                           A  3606    
+0B0FA9 C3 D9 10 0B         A  3607    	JR	L_138
+0B0FAD                     A  3608    L_134:
+0B0FAD 01050000            A  3609    	LD	BC,5
+0B0FB1 DD2706              A  3610    	LD	HL,(IX+%6)
+0B0FB4 B7                  A  3611    	OR	A,A
+0B0FB5 ED42                A  3612    	SBC	HL,BC
+0B0FB7 C2 D9 10 0B         A  3613    	JR	NZ,L_138
+                           A  3614    ;  322		
+                           A  3615    ;  323			bmp = load_bmp_big(argv[1], bit
+                           A  3616    .LINE 323
+                           A  3617    
+0B0FBB DD4EFF              A  3618    	LD	C,(IX+%FFFFFFFF)
+0B0FBE 0600                A  3619    	LD	B,%0
+0B0FC0 C5                  A  3620    	PUSH	BC
+0B0FC1 DD3109              A  3621    	LD	IY,(IX+%9)
+0B0FC4 ED2303              A  3622    	LEA	HL,IY+%3
+0B0FC7 ED07                A  3623    	LD	BC,(HL)
+0B0FC9 C5                  A  3624    	PUSH	BC
+0B0FCA ED65DF              A  3625    	PEA	IX+%FFFFFFDF
+0B0FCD CD 28 05 0B         A  3626    	CALL	_load_bmp_big
+0B0FD1 C1                  A  3627    	POP	BC
+0B0FD2 C1                  A  3628    	POP	BC
+0B0FD3 C1                  A  3629    	POP	BC
+0B0FD4 ED12F4              A  3630    	LEA	DE,IX+%FFFFFFF4
+0B0FD7 01050000            A  3631    	LD	BC,5
+0B0FDB EDB0                A  3632    	LDIR	
+                           A  3633    ;  324			
+                           A  3634    ;  325			if (argv[3][0] == 'C' || argv[3
+                           A  3635    .LINE 325
                            A  3636    
-0B0FF5 01000000            A  3637    	LD	BC,0
-0B0FF9 C5                  A  3638    	PUSH	BC
-0B0FFA DD3109              A  3639    	LD	IY,(IX+%9)
-0B0FFD ED2303              A  3640    	LEA	HL,IY+%3
-0B1000 ED07                A  3641    	LD	BC,(HL)
-0B1002 C5                  A  3642    	PUSH	BC
-0B1003 ED65EA              A  3643    	PEA	IX+%FFFFFFEA
-0B1006 DD77E4              A  3644    	LD	(IX+%FFFFFFE4),A
-0B1009 CD 28 05 0B         A  3645    	CALL	_load_bmp_big
-0B100D DD7EE4              A  3646    	LD	A,(IX+%FFFFFFE4)
-0B1010 C1                  A  3647    	POP	BC
-0B1011 C1                  A  3648    	POP	BC
-0B1012 C1                  A  3649    	POP	BC
-0B1013 ED12F4              A  3650    	LEA	DE,IX+%FFFFFFF4
-0B1016 01050000            A  3651    	LD	BC,5
-0B101A EDB0                A  3652    	LDIR	
-                           A  3653    ;  323			x = (getsysvar_scrwidth() - bmp
-                           A  3654    .LINE 323
-                           A  3655    
-0B101C DD77E4              A  3656    	LD	(IX+%FFFFFFE4),A
-0B101F CD 7A 1D 0B         A  3657    	CALL	_getsysvar_scrwidth
-0B1023 DD7EE4              A  3658    	LD	A,(IX+%FFFFFFE4)
-0B1026 E5C1                A  3659    	LD	BC,HL
-0B1028 CD 23 24 0B         A  3660    	CALL	__stoiu
-0B102C E5D1                A  3661    	LD	DE,HL
-0B102E DD07F4              A  3662    	LD	BC,(IX+%FFFFFFF4)
-0B1031 CD 23 24 0B         A  3663    	CALL	__stoiu
-0B1035 E5C1                A  3664    	LD	BC,HL
-0B1037 D5E1                A  3665    	LD	HL,DE
-0B1039 B7                  A  3666    	OR	A,A
-0B103A ED42                A  3667    	SBC	HL,BC
-0B103C 01020000            A  3668    	LD	BC,2
-0B1040 CD BD 25 0B         A  3669    	CALL	__idivs
-0B1044 DD2FF9              A  3670    	LD	(IX+%FFFFFFF9),HL
-                           A  3671    ;  324			y = (getsysvar_scrheight() - bm
-                           A  3672    .LINE 324
-                           A  3673    
-0B1047 DD77E4              A  3674    	LD	(IX+%FFFFFFE4),A
-0B104A CD 8D 1D 0B         A  3675    	CALL	_getsysvar_scrheight
-0B104E DD7EE4              A  3676    	LD	A,(IX+%FFFFFFE4)
-0B1051 E5C1                A  3677    	LD	BC,HL
-0B1053 CD 23 24 0B         A  3678    	CALL	__stoiu
-0B1057 E5D1                A  3679    	LD	DE,HL
-0B1059 DD07F6              A  3680    	LD	BC,(IX+%FFFFFFF6)
-0B105C CD 23 24 0B         A  3681    	CALL	__stoiu
-0B1060 E5C1                A  3682    	LD	BC,HL
-0B1062 D5E1                A  3683    	LD	HL,DE
-0B1064 B7                  A  3684    	OR	A,A
-0B1065 ED42                A  3685    	SBC	HL,BC
-0B1067 01020000            A  3686    	LD	BC,2
-0B106B CD BD 25 0B         A  3687    	CALL	__idivs
-0B106F DD2FFC              A  3688    	LD	(IX+%FFFFFFFC),HL
-                           A  3689    ;  325			vdp_bitmapDraw(bitmap_slot,x,y)
-                           A  3690    .LINE 325
-                           A  3691    
-0B1072 E5C1                A  3692    	LD	BC,HL
-0B1074 C5                  A  3693    	PUSH	BC
-0B1075 DD07F9              A  3694    	LD	BC,(IX+%FFFFFFF9)
-0B1078 C5                  A  3695    	PUSH	BC
-0B1079 DD4EFF              A  3696    	LD	C,(IX+%FFFFFFFF)
-0B107C 0600                A  3697    	LD	B,%0
-0B107E C5                  A  3698    	PUSH	BC
-0B107F CD AA 16 0B         A  3699    	CALL	_vdp_bitmapDraw
-0B1083 C1                  A  3700    	POP	BC
-0B1084 C1                  A  3701    	POP	BC
-0B1085 C1                  A  3702    	POP	BC
-                           A  3703    ;  326			
-                           A  3704    ;  327		} else if (argc == 5) {
-                           A  3705    .LINE 327
-                           A  3706    
-0B1086 18 6F               A  3707    	JR	L_130
-0B1088                     A  3708    L_126:
-0B1088 01050000            A  3709    	LD	BC,5
-0B108C DD2706              A  3710    	LD	HL,(IX+%6)
-0B108F B7                  A  3711    	OR	A,A
-0B1090 ED42                A  3712    	SBC	HL,BC
-0B1092 20 63               A  3713    	JR	NZ,L_130
-                           A  3714    ;  328		
-                           A  3715    ;  329			bmp = load_bmp_big(argv[1], 0);
-                           A  3716    .LINE 329
-                           A  3717    
-0B1094 01000000            A  3718    	LD	BC,0
-0B1098 C5                  A  3719    	PUSH	BC
-0B1099 DD3109              A  3720    	LD	IY,(IX+%9)
-0B109C ED2303              A  3721    	LEA	HL,IY+%3
-0B109F ED07                A  3722    	LD	BC,(HL)
-0B10A1 C5                  A  3723    	PUSH	BC
-0B10A2 ED65E5              A  3724    	PEA	IX+%FFFFFFE5
-0B10A5 CD 28 05 0B         A  3725    	CALL	_load_bmp_big
-0B10A9 C1                  A  3726    	POP	BC
-0B10AA C1                  A  3727    	POP	BC
-0B10AB C1                  A  3728    	POP	BC
-0B10AC ED12F4              A  3729    	LEA	DE,IX+%FFFFFFF4
-0B10AF 01050000            A  3730    	LD	BC,5
-0B10B3 EDB0                A  3731    	LDIR	
-                           A  3732    ;  330			x = strtou16(argv[3]);
-                           A  3733    .LINE 330
-                           A  3734    
-0B10B5 DD3109              A  3735    	LD	IY,(IX+%9)
-0B10B8 ED2309              A  3736    	LEA	HL,IY+%9
-0B10BB ED07                A  3737    	LD	BC,(HL)
-0B10BD C5                  A  3738    	PUSH	BC
-0B10BE CD C6 0B 0B         A  3739    	CALL	_strtou16
-0B10C2 C1                  A  3740    	POP	BC
-0B10C3 E5C1                A  3741    	LD	BC,HL
-0B10C5 CD 23 24 0B         A  3742    	CALL	__stoiu
-0B10C9 DD2FF9              A  3743    	LD	(IX+%FFFFFFF9),HL
-                           A  3744    ;  331			y = strtou16(argv[4]);
-                           A  3745    .LINE 331
-                           A  3746    
-0B10CC DD3109              A  3747    	LD	IY,(IX+%9)
-0B10CF ED230C              A  3748    	LEA	HL,IY+%C
-0B10D2 ED07                A  3749    	LD	BC,(HL)
-0B10D4 C5                  A  3750    	PUSH	BC
-0B10D5 CD C6 0B 0B         A  3751    	CALL	_strtou16
-0B10D9 C1                  A  3752    	POP	BC
-0B10DA E5C1                A  3753    	LD	BC,HL
-0B10DC CD 23 24 0B         A  3754    	CALL	__stoiu
-0B10E0 DD2FFC              A  3755    	LD	(IX+%FFFFFFFC),HL
-                           A  3756    ;  332			vdp_bitmapDraw(bitmap_slot,x,y)
-                           A  3757    .LINE 332
-                           A  3758    
-0B10E3 E5C1                A  3759    	LD	BC,HL
-0B10E5 C5                  A  3760    	PUSH	BC
-0B10E6 DD07F9              A  3761    	LD	BC,(IX+%FFFFFFF9)
-0B10E9 C5                  A  3762    	PUSH	BC
-0B10EA DD4EFF              A  3763    	LD	C,(IX+%FFFFFFFF)
-0B10ED 0600                A  3764    	LD	B,%0
-0B10EF C5                  A  3765    	PUSH	BC
-0B10F0 CD AA 16 0B         A  3766    	CALL	_vdp_bitmapDraw
-0B10F4 C1                  A  3767    	POP	BC
-0B10F5 C1                  A  3768    	POP	BC
-0B10F6 C1                  A  3769    	POP	BC
-                           A  3770    ;  333			
-                           A  3771    ;  334		}
-0B10F7                     A  3772    L_130:
-                           A  3773    .LINE 334
-                           A  3774    
-                           A  3775    ;  335	
-                           A  3776    ;  336	    return 0;
-                           A  3777    .LINE 336
-                           A  3778    
-0B10F7 B7                  A  3779    	OR	A,A
-0B10F8 ED62                A  3780    	SBC	HL,HL
-0B10FA                     A  3781    L_131:
-                           A  3782    .LINE 337
-                           A  3783    
-0B10FA DDF9                A  3784    	LD	SP,IX
-0B10FC DDE1                A  3785    	POP	IX
-0B10FE C9                  A  3786    	RET	
-                           A  3787    
-                           A  3788    
-                           A  3789    ;**************************** _main ***********
-                           A  3790    ;Name                         Addr/Register   S
-                           A  3791    ;_vdp_bitmapDraw                     IMPORT  --
-                           A  3792    ;_getsysvar_scrheight                IMPORT  --
-                           A  3793    ;_getsysvar_scrwidth                 IMPORT  --
-                           A  3794    ;___print_sendstring                 IMPORT  --
-                           A  3795    ;___print_xputch                     IMPORT    
-                           A  3796    ;___print_uputch                     IMPORT  --
-                           A  3797    ;bmp                                  IX-12    
-                           A  3798    ;x                                     IX-7    
-                           A  3799    ;y                                     IX-4    
-                           A  3800    ;bitmap_slot                           IX-1    
-                           A  3801    ;argv                                  IX+9    
-                           A  3802    ;argc                                  IX+6    
+0B0FDD DD3109              A  3637    	LD	IY,(IX+%9)
+0B0FE0 ED3309              A  3638    	LEA	IY,IY+%9
+0B0FE3 DD3EF1              A  3639    	LD	(IX+%FFFFFFF1),IY
+0B0FE6 DD27F1              A  3640    	LD	HL,(IX+%FFFFFFF1)
+0B0FE9 ED27                A  3641    	LD	HL,(HL)
+0B0FEB 7E                  A  3642    	LD	A,(HL)
+0B0FEC 47                  A  3643    	LD	B,A
+0B0FED 17ED62              A  3644    	SEXT	HL
+0B0FF0 68                  A  3645    	LD	L,B
+0B0FF1 01430000            A  3646    	LD	BC,67
+0B0FF5 B7                  A  3647    	OR	A,A
+0B0FF6 ED42                A  3648    	SBC	HL,BC
+0B0FF8 28 14               A  3649    	JR	Z,L_125
+0B0FFA DD27F1              A  3650    	LD	HL,(IX+%FFFFFFF1)
+0B0FFD ED27                A  3651    	LD	HL,(HL)
+0B0FFF 7E                  A  3652    	LD	A,(HL)
+0B1000 47                  A  3653    	LD	B,A
+0B1001 17ED62              A  3654    	SEXT	HL
+0B1004 68                  A  3655    	LD	L,B
+0B1005 01630000            A  3656    	LD	BC,99
+0B1009 B7                  A  3657    	OR	A,A
+0B100A ED42                A  3658    	SBC	HL,BC
+0B100C 20 2D               A  3659    	JR	NZ,L_126
+0B100E                     A  3660    L_125:
+0B100E DD77DE              A  3661    	LD	(IX+%FFFFFFDE),A
+0B1011 CD 5C 1D 0B         A  3662    	CALL	_getsysvar_scrwidth
+0B1015 DD7EDE              A  3663    	LD	A,(IX+%FFFFFFDE)
+0B1018 E5C1                A  3664    	LD	BC,HL
+0B101A CD 05 24 0B         A  3665    	CALL	__stoiu
+0B101E E5D1                A  3666    	LD	DE,HL
+0B1020 DD07F4              A  3667    	LD	BC,(IX+%FFFFFFF4)
+0B1023 CD 05 24 0B         A  3668    	CALL	__stoiu
+0B1027 E5C1                A  3669    	LD	BC,HL
+0B1029 D5E1                A  3670    	LD	HL,DE
+0B102B B7                  A  3671    	OR	A,A
+0B102C ED42                A  3672    	SBC	HL,BC
+0B102E 01020000            A  3673    	LD	BC,2
+0B1032 CD 9F 25 0B         A  3674    	CALL	__idivs
+0B1036 DD2FF9              A  3675    	LD	(IX+%FFFFFFF9),HL
+                           A  3676    ;  326			else x = strtou16(argv[4]);
+                           A  3677    .LINE 326
+                           A  3678    
+0B1039 18 17               A  3679    	JR	L_130
+0B103B                     A  3680    L_126:
+0B103B DD3109              A  3681    	LD	IY,(IX+%9)
+0B103E ED230C              A  3682    	LEA	HL,IY+%C
+0B1041 ED07                A  3683    	LD	BC,(HL)
+0B1043 C5                  A  3684    	PUSH	BC
+0B1044 CD C6 0B 0B         A  3685    	CALL	_strtou16
+0B1048 C1                  A  3686    	POP	BC
+0B1049 E5C1                A  3687    	LD	BC,HL
+0B104B CD 05 24 0B         A  3688    	CALL	__stoiu
+0B104F DD2FF9              A  3689    	LD	(IX+%FFFFFFF9),HL
+0B1052                     A  3690    L_130:
+                           A  3691    ;  327			
+                           A  3692    ;  328			if (argv[4][0] == 'C' || argv[4
+                           A  3693    .LINE 328
+                           A  3694    
+0B1052 DD3109              A  3695    	LD	IY,(IX+%9)
+0B1055 ED330C              A  3696    	LEA	IY,IY+%C
+0B1058 DD3EFC              A  3697    	LD	(IX+%FFFFFFFC),IY
+0B105B DD27FC              A  3698    	LD	HL,(IX+%FFFFFFFC)
+0B105E ED27                A  3699    	LD	HL,(HL)
+0B1060 7E                  A  3700    	LD	A,(HL)
+0B1061 47                  A  3701    	LD	B,A
+0B1062 17ED62              A  3702    	SEXT	HL
+0B1065 68                  A  3703    	LD	L,B
+0B1066 01430000            A  3704    	LD	BC,67
+0B106A B7                  A  3705    	OR	A,A
+0B106B ED42                A  3706    	SBC	HL,BC
+0B106D 28 14               A  3707    	JR	Z,L_128
+0B106F DD27FC              A  3708    	LD	HL,(IX+%FFFFFFFC)
+0B1072 ED27                A  3709    	LD	HL,(HL)
+0B1074 7E                  A  3710    	LD	A,(HL)
+0B1075 47                  A  3711    	LD	B,A
+0B1076 17ED62              A  3712    	SEXT	HL
+0B1079 68                  A  3713    	LD	L,B
+0B107A 01630000            A  3714    	LD	BC,99
+0B107E B7                  A  3715    	OR	A,A
+0B107F ED42                A  3716    	SBC	HL,BC
+0B1081 20 2D               A  3717    	JR	NZ,L_129
+0B1083                     A  3718    L_128:
+0B1083 DD77DE              A  3719    	LD	(IX+%FFFFFFDE),A
+0B1086 CD 6F 1D 0B         A  3720    	CALL	_getsysvar_scrheight
+0B108A DD7EDE              A  3721    	LD	A,(IX+%FFFFFFDE)
+0B108D E5C1                A  3722    	LD	BC,HL
+0B108F CD 05 24 0B         A  3723    	CALL	__stoiu
+0B1093 E5D1                A  3724    	LD	DE,HL
+0B1095 DD07F6              A  3725    	LD	BC,(IX+%FFFFFFF6)
+0B1098 CD 05 24 0B         A  3726    	CALL	__stoiu
+0B109C E5C1                A  3727    	LD	BC,HL
+0B109E D5E1                A  3728    	LD	HL,DE
+0B10A0 B7                  A  3729    	OR	A,A
+0B10A1 ED42                A  3730    	SBC	HL,BC
+0B10A3 01020000            A  3731    	LD	BC,2
+0B10A7 CD 9F 25 0B         A  3732    	CALL	__idivs
+0B10AB DD2FEE              A  3733    	LD	(IX+%FFFFFFEE),HL
+                           A  3734    ;  329			else y = strtou16(argv[4]);
+                           A  3735    .LINE 329
+                           A  3736    
+0B10AE 18 14               A  3737    	JR	L_131
+0B10B0                     A  3738    L_129:
+0B10B0 DD27FC              A  3739    	LD	HL,(IX+%FFFFFFFC)
+0B10B3 ED07                A  3740    	LD	BC,(HL)
+0B10B5 C5                  A  3741    	PUSH	BC
+0B10B6 CD C6 0B 0B         A  3742    	CALL	_strtou16
+0B10BA C1                  A  3743    	POP	BC
+0B10BB E5C1                A  3744    	LD	BC,HL
+0B10BD CD 05 24 0B         A  3745    	CALL	__stoiu
+0B10C1 DD2FEE              A  3746    	LD	(IX+%FFFFFFEE),HL
+0B10C4                     A  3747    L_131:
+                           A  3748    ;  330			
+                           A  3749    ;  331			vdp_bitmapDraw(bitmap_slot,x,y)
+                           A  3750    .LINE 331
+                           A  3751    
+0B10C4 DD07EE              A  3752    	LD	BC,(IX+%FFFFFFEE)
+0B10C7 C5                  A  3753    	PUSH	BC
+0B10C8 DD07F9              A  3754    	LD	BC,(IX+%FFFFFFF9)
+0B10CB C5                  A  3755    	PUSH	BC
+0B10CC DD4EFF              A  3756    	LD	C,(IX+%FFFFFFFF)
+0B10CF 0600                A  3757    	LD	B,%0
+0B10D1 C5                  A  3758    	PUSH	BC
+0B10D2 CD 8C 16 0B         A  3759    	CALL	_vdp_bitmapDraw
+0B10D6 C1                  A  3760    	POP	BC
+0B10D7 C1                  A  3761    	POP	BC
+0B10D8 C1                  A  3762    	POP	BC
+                           A  3763    ;  332			
+                           A  3764    ;  333		}
+0B10D9                     A  3765    L_138:
+                           A  3766    .LINE 333
+                           A  3767    
+                           A  3768    ;  334	
+                           A  3769    ;  335	    return 0;
+                           A  3770    .LINE 335
+                           A  3771    
+0B10D9 B7                  A  3772    	OR	A,A
+0B10DA ED62                A  3773    	SBC	HL,HL
+0B10DC                     A  3774    L_139:
+                           A  3775    .LINE 336
+                           A  3776    
+0B10DC DDF9                A  3777    	LD	SP,IX
+0B10DE DDE1                A  3778    	POP	IX
+0B10E0 C9                  A  3779    	RET	
+                           A  3780    
+                           A  3781    
+                           A  3782    ;**************************** _main ***********
+                           A  3783    ;Name                         Addr/Register   S
+                           A  3784    ;_vdp_bitmapDraw                     IMPORT  --
+                           A  3785    ;_getsysvar_scrheight                IMPORT  --
+                           A  3786    ;_getsysvar_scrwidth                 IMPORT  --
+                           A  3787    ;___print_sendstring                 IMPORT  --
+                           A  3788    ;___print_xputch                     IMPORT    
+                           A  3789    ;___print_uputch                     IMPORT  --
+                           A  3790    ;y                                    IX-18    
+                           A  3791    ;G_1                                  IX-15    
+                           A  3792    ;bmp                                  IX-12    
+                           A  3793    ;x                                     IX-7    
+                           A  3794    ;G_2                                   IX-4    
+                           A  3795    ;bitmap_slot                           IX-1    
+                           A  3796    ;argv                                  IX+9    
+                           A  3797    ;argc                                  IX+6    
+                           A  3798    
+                           A  3799    
+                           A  3800    ; Stack Frame Size: 46 (bytes)
+                           A  3801    ;       Spill Code: -3 (instruction)
+                           A  3802    
                            A  3803    
-                           A  3804    
-                           A  3805    ; Stack Frame Size: 40 (bytes)
-                           A  3806    ;       Spill Code: -3 (instruction)
-                           A  3807    
-                           A  3808    
-                           A  3809    .ENDFUNC "main",337,"_main"
-                           A  3810    	SEGMENT STRSECT
-0B27AF                     A  3811    L__95:
-0B27AF 55736167 65206973   A  3812    	DB	"Usage is "
-0B27B7 20 
-0B27B8 00                  A  3813    	DB	0
-0B27B9                     A  3814    L__96:
-0B27B9 203C6669 6C656E61   A  3815    	DB	" <filename> [bitmap slot] [top-left x]
-0B27C1 6D653E20 5B626974 
-0B27C9 6D617020 736C6F74 
-0B27D1 5D205B74 6F702D6C 
-0B27D9 65667420 785D205B 
-0B27E1 746F702D 6C656674 
-0B27E9 20795D 
-0B27EC 0D0A00              A  3816    	DB	13,10,0
-                           A  3817    	XREF _write16bit:ROM
-                           A  3818    	XREF _vdp_bitmapDraw:ROM
-                           A  3819    	XREF _vdp_bitmapSelect:ROM
-                           A  3820    	XREF _mos_getfil:ROM
-                           A  3821    	XREF _mos_flseek:ROM
-                           A  3822    	XREF _mos_fread:ROM
-                           A  3823    	XREF _mos_fgetc:ROM
-                           A  3824    	XREF _mos_fclose:ROM
-                           A  3825    	XREF _mos_fopen:ROM
-                           A  3826    	XREF _getsysvar_scrheight:ROM
-                           A  3827    	XREF _getsysvar_scrwidth:ROM
-                           A  3828    	XREF _mos_puts:ROM
-                           A  3829    	XREF _waitvblank:ROM
-                           A  3830    	XREF _putch:ROM
-                           A  3831    	XREF _memcpy:ROM
-                           A  3832    	XREF _malloc:ROM
-                           A  3833    	XREF _free:ROM
-                           A  3834    	XREF ___print_sendstring:ROM
-                           A  3835    	XREF ___print_xputch:ROM
-                           A  3836    	XREF ___print_uputch:ROM
-                           A  3837    	XREF __lcmps:ROM
-                           A  3838    	XREF __lcmpu:ROM
-                           A  3839    	XREF __ladd:ROM
-                           A  3840    	XREF __lsub:ROM
-                           A  3841    	XREF __idivs:ROM
-                           A  3842    	XREF __ldivs:ROM
-                           A  3843    	XREF __imuls:ROM
-                           A  3844    	XREF __lmuls:ROM
-                           A  3845    	XREF __lmulu:ROM
-                           A  3846    	XREF __smulu:ROM
-                           A  3847    	XREF __lrems:ROM
-                           A  3848    	XREF __stoiu:ROM
-                           A  3849    	XREF __itol:ROM
-                           A  3850    	XREF __ildix:ROM
-                           A  3851    	XREF __istix:ROM
-                           A  3852    	XREF __ladd_b:ROM
-                           A  3853    	XDEF _main
-                           A  3854    	XDEF _strtou24
-                           A  3855    	XDEF _strtou8
-                           A  3856    	XDEF _strtou16
-                           A  3857    	XDEF _load_bmp_big
-                           A  3858    	XDEF _reorder
-                           A  3859    	XDEF _twiddle_buffer
-                           A  3860    	XDEF _flip
-                           A  3861    	XDEF _max
-                           A  3862    	XDEF _min
-                           A  3863    	XDEF _delay_secs
-                           A  3864    	END
+                           A  3804    .ENDFUNC "main",336,"_main"
+                           A  3805    	SEGMENT STRSECT
+0B2791                     A  3806    L__95:
+0B2791 55736167 65206973   A  3807    	DB	"Usage is "
+0B2799 20 
+0B279A 00                  A  3808    	DB	0
+0B279B                     A  3809    L__96:
+0B279B 203C6669 6C656E61   A  3810    	DB	" <filename> [bitmap slot] [top-left x]
+0B27A3 6D653E20 5B626974 
+0B27AB 6D617020 736C6F74 
+0B27B3 5D205B74 6F702D6C 
+0B27BB 65667420 785D205B 
+0B27C3 746F702D 6C656674 
+0B27CB 20795D 
+0B27CE 0D0A00              A  3811    	DB	13,10,0
+                           A  3812    	XREF _write16bit:ROM
+                           A  3813    	XREF _vdp_bitmapDraw:ROM
+                           A  3814    	XREF _vdp_bitmapSelect:ROM
+                           A  3815    	XREF _mos_getfil:ROM
+                           A  3816    	XREF _mos_flseek:ROM
+                           A  3817    	XREF _mos_fread:ROM
+                           A  3818    	XREF _mos_fgetc:ROM
+                           A  3819    	XREF _mos_fclose:ROM
+                           A  3820    	XREF _mos_fopen:ROM
+                           A  3821    	XREF _getsysvar_scrheight:ROM
+                           A  3822    	XREF _getsysvar_scrwidth:ROM
+                           A  3823    	XREF _mos_puts:ROM
+                           A  3824    	XREF _waitvblank:ROM
+                           A  3825    	XREF _putch:ROM
+                           A  3826    	XREF _memcpy:ROM
+                           A  3827    	XREF _malloc:ROM
+                           A  3828    	XREF _free:ROM
+                           A  3829    	XREF ___print_sendstring:ROM
+                           A  3830    	XREF ___print_xputch:ROM
+                           A  3831    	XREF ___print_uputch:ROM
+                           A  3832    	XREF __lcmps:ROM
+                           A  3833    	XREF __lcmpu:ROM
+                           A  3834    	XREF __ladd:ROM
+                           A  3835    	XREF __lsub:ROM
+                           A  3836    	XREF __idivs:ROM
+                           A  3837    	XREF __ldivs:ROM
+                           A  3838    	XREF __imuls:ROM
+                           A  3839    	XREF __lmuls:ROM
+                           A  3840    	XREF __lmulu:ROM
+                           A  3841    	XREF __smulu:ROM
+                           A  3842    	XREF __lrems:ROM
+                           A  3843    	XREF __stoiu:ROM
+                           A  3844    	XREF __itol:ROM
+                           A  3845    	XREF __ildix:ROM
+                           A  3846    	XREF __istix:ROM
+                           A  3847    	XREF __ladd_b:ROM
+                           A  3848    	XDEF _main
+                           A  3849    	XDEF _strtou24
+                           A  3850    	XDEF _strtou8
+                           A  3851    	XDEF _strtou16
+                           A  3852    	XDEF _load_bmp_big
+                           A  3853    	XDEF _reorder
+                           A  3854    	XDEF _twiddle_buffer
+                           A  3855    	XDEF _flip
+                           A  3856    	XDEF _max
+                           A  3857    	XDEF _min
+                           A  3858    	XDEF _delay_secs
+                           A  3859    	END
 
 
 Errors: 0
 Warnings: 0
-Lines Assembled: 3865
+Lines Assembled: 3860

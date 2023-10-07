@@ -3415,16 +3415,6 @@ _main:
 
 .ENDEF
 
-.DEFINE "y"
-
-.CLASS 65
-
-.VALUE -4
-
-.TYPE 14
-
-.ENDEF
-
 .DEFINE "x"
 
 .CLASS 65
@@ -3447,10 +3437,20 @@ _main:
 
 .ENDEF
 
+.DEFINE "y"
+
+.CLASS 65
+
+.VALUE -18
+
+.TYPE 14
+
+.ENDEF
+
 	PUSH	IX
 	LD	IX,0
 	ADD	IX,SP
-	LEA	HL,IX+%FFFFFFE4
+	LEA	HL,IX+%FFFFFFDE
 	LD	SP,HL
 ;  297	
 ;  298	    uint24_t x, y;
@@ -3469,12 +3469,12 @@ _main:
 	LD	HL,(IX+%6)
 	OR	A,A
 	SBC	HL,BC
-	JP	M,L__101
+	JP	M,L__105
 	JP	PE,L_121
-	JR	L__102
-L__101:
+	JR	L__106
+L__105:
 	JP	PO,L_121
-L__102:
+L__106:
 	LD	BC,4
 	LD	HL,(IX+%6)
 	OR	A,A
@@ -3484,12 +3484,12 @@ L__102:
 	LD	HL,5
 	OR	A,A
 	SBC	HL,BC
-	JP	P,L__103
+	JP	P,L__107
 	JP	PE,L_123
-	JR	L__104
-L__103:
+	JR	L__108
+L__107:
 	JP	PO,L_123
-L__104:
+L__108:
 L_121:
 ;  305	        printf("Usage is %s <filename> [bitmap slot] [top-left x] [top-left y]\r\n", argv[0]);
 .LINE 305
@@ -3514,7 +3514,7 @@ L_121:
 
 	OR	A,A
 	SBC	HL,HL
-	JR	L_131
+	JR	L_139
 ;  307	    }
 L_123:
 .LINE 307
@@ -3527,12 +3527,12 @@ L_123:
 	LD	HL,2
 	OR	A,A
 	SBC	HL,BC
-	JP	P,L__105
-	JP	PE,L_129
-	JR	L__106
-L__105:
-	JP	PO,L_129
-L__106:
+	JP	P,L__109
+	JP	PE,L_137
+	JR	L__110
+L__109:
+	JP	PO,L_137
+L__110:
 	LD	IY,(IX+%9)
 	LEA	HL,IY+%6
 	LD	BC,(HL)
@@ -3540,7 +3540,7 @@ L__106:
 	CALL	_strtou8
 	POP	BC
 	LD	(IX+%FFFFFFFF),A
-L_129:
+L_137:
 ;  310		
 ;  311	    //vdp_mode(8);
 ;  312		
@@ -3551,7 +3551,7 @@ L_129:
 	LD	HL,(IX+%6)
 	OR	A,A
 	SBC	HL,BC
-	JR	NZ,L_128
+	JR	NZ,L_136
 ;  314	
 ;  315			bmp = load_bmp_big(argv[1], 0);
 .LINE 315
@@ -3562,100 +3562,105 @@ L_129:
 	LEA	HL,IY+%3
 	LD	BC,(HL)
 	PUSH	BC
-	PEA	IX+%FFFFFFEF
-	LD	(IX+%FFFFFFE4),A
+	PEA	IX+%FFFFFFE9
 	CALL	_load_bmp_big
-	LD	A,(IX+%FFFFFFE4)
 	POP	BC
 	POP	BC
 	POP	BC
 	LEA	DE,IX+%FFFFFFF4
 	LD	BC,5
 	LDIR	
-;  316			x = (getsysvar_scrwidth() - bmp.bmp_width) / 2;
-.LINE 316
-
-	LD	(IX+%FFFFFFE4),A
-	CALL	_getsysvar_scrwidth
-	LD	A,(IX+%FFFFFFE4)
-	LD	BC,HL
-	CALL	__stoiu
-	LD	DE,HL
-	LD	BC,(IX+%FFFFFFF4)
-	CALL	__stoiu
-	LD	BC,HL
-	LD	HL,DE
-	OR	A,A
-	SBC	HL,BC
-	LD	BC,2
-	CALL	__idivs
-	LD	(IX+%FFFFFFF9),HL
-;  317			y = (getsysvar_scrheight() - bmp.bmp_height) / 2;		
+;  316			
+;  317		} else if (argc == 3) {
 .LINE 317
 
-	LD	(IX+%FFFFFFE4),A
-	CALL	_getsysvar_scrheight
-	LD	A,(IX+%FFFFFFE4)
-	LD	BC,HL
-	CALL	__stoiu
-	LD	DE,HL
-	LD	BC,(IX+%FFFFFFF6)
-	CALL	__stoiu
-	LD	BC,HL
-	LD	HL,DE
-	OR	A,A
-	SBC	HL,BC
-	LD	BC,2
-	CALL	__idivs
-	LD	(IX+%FFFFFFFC),HL
-;  318			vdp_bitmapDraw(0,0,0);
-.LINE 318
-
-	LD	BC,0
-	PUSH	BC
-	PUSH	BC
-	PUSH	BC
-	CALL	_vdp_bitmapDraw
-	POP	BC
-	POP	BC
-	POP	BC
-;  319			
-;  320		} else if (argc == 3) {
-.LINE 320
-
-	JR	L_130
-L_128:
+	JR	L_138
+L_136:
 	LD	BC,3
 	LD	HL,(IX+%6)
 	OR	A,A
 	SBC	HL,BC
-	JR	NZ,L_126
-;  321			
-;  322			bmp = load_bmp_big(argv[1], 0);
-.LINE 322
+	JR	NZ,L_134
+;  318			
+;  319			bmp = load_bmp_big(argv[1], bitmap_slot);
+.LINE 319
 
-	LD	BC,0
+	LD	C,(IX+%FFFFFFFF)
+	LD	B,%0
 	PUSH	BC
 	LD	IY,(IX+%9)
 	LEA	HL,IY+%3
 	LD	BC,(HL)
 	PUSH	BC
-	PEA	IX+%FFFFFFEA
-	LD	(IX+%FFFFFFE4),A
+	PEA	IX+%FFFFFFE4
 	CALL	_load_bmp_big
-	LD	A,(IX+%FFFFFFE4)
 	POP	BC
 	POP	BC
 	POP	BC
 	LEA	DE,IX+%FFFFFFF4
 	LD	BC,5
 	LDIR	
-;  323			x = (getsysvar_scrwidth() - bmp.bmp_width) / 2;
+;  320			
+;  321		} else if (argc == 5) {
+.LINE 321
+
+	JR	L_138
+L_134:
+	LD	BC,5
+	LD	HL,(IX+%6)
+	OR	A,A
+	SBC	HL,BC
+	JR	NZ,L_138
+;  322		
+;  323			bmp = load_bmp_big(argv[1], bitmap_slot);
 .LINE 323
 
-	LD	(IX+%FFFFFFE4),A
+	LD	C,(IX+%FFFFFFFF)
+	LD	B,%0
+	PUSH	BC
+	LD	IY,(IX+%9)
+	LEA	HL,IY+%3
+	LD	BC,(HL)
+	PUSH	BC
+	PEA	IX+%FFFFFFDF
+	CALL	_load_bmp_big
+	POP	BC
+	POP	BC
+	POP	BC
+	LEA	DE,IX+%FFFFFFF4
+	LD	BC,5
+	LDIR	
+;  324			
+;  325			if (argv[3][0] == 'C' || argv[3][0] == 'c') x = (getsysvar_scrwidth() - bmp.bmp_width) / 2;
+.LINE 325
+
+	LD	IY,(IX+%9)
+	LEA	IY,IY+%9
+	LD	(IX+%FFFFFFF1),IY
+	LD	HL,(IX+%FFFFFFF1)
+	LD	HL,(HL)
+	LD	A,(HL)
+	LD	B,A
+	SEXT	HL
+	LD	L,B
+	LD	BC,67
+	OR	A,A
+	SBC	HL,BC
+	JR	Z,L_125
+	LD	HL,(IX+%FFFFFFF1)
+	LD	HL,(HL)
+	LD	A,(HL)
+	LD	B,A
+	SEXT	HL
+	LD	L,B
+	LD	BC,99
+	OR	A,A
+	SBC	HL,BC
+	JR	NZ,L_126
+L_125:
+	LD	(IX+%FFFFFFDE),A
 	CALL	_getsysvar_scrwidth
-	LD	A,(IX+%FFFFFFE4)
+	LD	A,(IX+%FFFFFFDE)
 	LD	BC,HL
 	CALL	__stoiu
 	LD	DE,HL
@@ -3668,82 +3673,11 @@ L_128:
 	LD	BC,2
 	CALL	__idivs
 	LD	(IX+%FFFFFFF9),HL
-;  324			y = (getsysvar_scrheight() - bmp.bmp_height) / 2;
-.LINE 324
-
-	LD	(IX+%FFFFFFE4),A
-	CALL	_getsysvar_scrheight
-	LD	A,(IX+%FFFFFFE4)
-	LD	BC,HL
-	CALL	__stoiu
-	LD	DE,HL
-	LD	BC,(IX+%FFFFFFF6)
-	CALL	__stoiu
-	LD	BC,HL
-	LD	HL,DE
-	OR	A,A
-	SBC	HL,BC
-	LD	BC,2
-	CALL	__idivs
-	LD	(IX+%FFFFFFFC),HL
-;  325			vdp_bitmapDraw(bitmap_slot,x,y);
-.LINE 325
-
-	LD	BC,HL
-	PUSH	BC
-	LD	BC,(IX+%FFFFFFF9)
-	PUSH	BC
-	LD	C,(IX+%FFFFFFFF)
-	LD	B,%0
-	PUSH	BC
-	CALL	_vdp_bitmapDraw
-	POP	BC
-	POP	BC
-	POP	BC
-;  326			
-;  327		} else if (argc == 5) {
-.LINE 327
+;  326			else x = strtou16(argv[4]);
+.LINE 326
 
 	JR	L_130
 L_126:
-	LD	BC,5
-	LD	HL,(IX+%6)
-	OR	A,A
-	SBC	HL,BC
-	JR	NZ,L_130
-;  328		
-;  329			bmp = load_bmp_big(argv[1], 0);
-.LINE 329
-
-	LD	BC,0
-	PUSH	BC
-	LD	IY,(IX+%9)
-	LEA	HL,IY+%3
-	LD	BC,(HL)
-	PUSH	BC
-	PEA	IX+%FFFFFFE5
-	CALL	_load_bmp_big
-	POP	BC
-	POP	BC
-	POP	BC
-	LEA	DE,IX+%FFFFFFF4
-	LD	BC,5
-	LDIR	
-;  330			x = strtou16(argv[3]);
-.LINE 330
-
-	LD	IY,(IX+%9)
-	LEA	HL,IY+%9
-	LD	BC,(HL)
-	PUSH	BC
-	CALL	_strtou16
-	POP	BC
-	LD	BC,HL
-	CALL	__stoiu
-	LD	(IX+%FFFFFFF9),HL
-;  331			y = strtou16(argv[4]);
-.LINE 331
-
 	LD	IY,(IX+%9)
 	LEA	HL,IY+%C
 	LD	BC,(HL)
@@ -3752,11 +3686,70 @@ L_126:
 	POP	BC
 	LD	BC,HL
 	CALL	__stoiu
-	LD	(IX+%FFFFFFFC),HL
-;  332			vdp_bitmapDraw(bitmap_slot,x,y);
-.LINE 332
+	LD	(IX+%FFFFFFF9),HL
+L_130:
+;  327			
+;  328			if (argv[4][0] == 'C' || argv[4][0] == 'c') y = (getsysvar_scrheight() - bmp.bmp_height) / 2;
+.LINE 328
 
+	LD	IY,(IX+%9)
+	LEA	IY,IY+%C
+	LD	(IX+%FFFFFFFC),IY
+	LD	HL,(IX+%FFFFFFFC)
+	LD	HL,(HL)
+	LD	A,(HL)
+	LD	B,A
+	SEXT	HL
+	LD	L,B
+	LD	BC,67
+	OR	A,A
+	SBC	HL,BC
+	JR	Z,L_128
+	LD	HL,(IX+%FFFFFFFC)
+	LD	HL,(HL)
+	LD	A,(HL)
+	LD	B,A
+	SEXT	HL
+	LD	L,B
+	LD	BC,99
+	OR	A,A
+	SBC	HL,BC
+	JR	NZ,L_129
+L_128:
+	LD	(IX+%FFFFFFDE),A
+	CALL	_getsysvar_scrheight
+	LD	A,(IX+%FFFFFFDE)
 	LD	BC,HL
+	CALL	__stoiu
+	LD	DE,HL
+	LD	BC,(IX+%FFFFFFF6)
+	CALL	__stoiu
+	LD	BC,HL
+	LD	HL,DE
+	OR	A,A
+	SBC	HL,BC
+	LD	BC,2
+	CALL	__idivs
+	LD	(IX+%FFFFFFEE),HL
+;  329			else y = strtou16(argv[4]);
+.LINE 329
+
+	JR	L_131
+L_129:
+	LD	HL,(IX+%FFFFFFFC)
+	LD	BC,(HL)
+	PUSH	BC
+	CALL	_strtou16
+	POP	BC
+	LD	BC,HL
+	CALL	__stoiu
+	LD	(IX+%FFFFFFEE),HL
+L_131:
+;  330			
+;  331			vdp_bitmapDraw(bitmap_slot,x,y);
+.LINE 331
+
+	LD	BC,(IX+%FFFFFFEE)
 	PUSH	BC
 	LD	BC,(IX+%FFFFFFF9)
 	PUSH	BC
@@ -3767,19 +3760,19 @@ L_126:
 	POP	BC
 	POP	BC
 	POP	BC
-;  333			
-;  334		}
-L_130:
-.LINE 334
+;  332			
+;  333		}
+L_138:
+.LINE 333
 
-;  335	
-;  336	    return 0;
-.LINE 336
+;  334	
+;  335	    return 0;
+.LINE 335
 
 	OR	A,A
 	SBC	HL,HL
-L_131:
-.LINE 337
+L_139:
+.LINE 336
 
 	LD	SP,IX
 	POP	IX
@@ -3794,19 +3787,21 @@ L_131:
 ;___print_sendstring                 IMPORT  -----   function
 ;___print_xputch                     IMPORT      3   variable
 ;___print_uputch                     IMPORT  -----   function
+;y                                    IX-18      3   variable
+;G_1                                  IX-15      3   variable
 ;bmp                                  IX-12      5   variable
 ;x                                     IX-7      3   variable
-;y                                     IX-4      3   variable
+;G_2                                   IX-4      3   variable
 ;bitmap_slot                           IX-1      1   variable
 ;argv                                  IX+9      3   parameter
 ;argc                                  IX+6      3   parameter
 
 
-; Stack Frame Size: 40 (bytes)
+; Stack Frame Size: 46 (bytes)
 ;       Spill Code: -3 (instruction)
 
 
-.ENDFUNC "main",337,"_main"
+.ENDFUNC "main",336,"_main"
 	SEGMENT STRSECT
 L__95:
 	DB	"Usage is "
