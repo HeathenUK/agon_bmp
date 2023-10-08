@@ -172,14 +172,44 @@ bmp_info load_bmp_big(const char * filename, UINT8 slot) { //Uses 64x64x4 chunks
 
     if (color_table_size > 0) mos_fread(file, color_table, color_table_size * 4);
 
-    else if (biSize > 40) { //If for any reason there's yet more data in the header
+    // else if (biSize > 40) { //If for any reason there's yet more data in the header
 
-        i = biSize - 40;
-        while (i--> 0) {
-            mos_fgetc(file);
-        }
+        // i = biSize - 40;
+        // while (i--> 0) {
+            // mos_fgetc(file);
+        // }
 
-    }
+    // }
+	
+	if (biSize > 40) {
+		// If BITMAPV4HEADER or above, expect color masks
+		if (biSize >= 108) {
+			char redMask[4], greenMask[4], blueMask[4], alphaMask[4];
+			mos_fread(file, redMask, 4);
+			mos_fread(file, greenMask, 4);
+			mos_fread(file, blueMask, 4);
+			mos_fread(file, alphaMask, 4);
+				
+			if (!(memcmp(redMask, "\x00\x00\xFF\x00", 4) == 0 &&
+				  memcmp(greenMask, "\x00\xFF\x00\x00", 4) == 0 &&
+				  memcmp(blueMask, "\xFF\x00\x00\x00", 4) == 0 &&
+				  memcmp(alphaMask, "\x00\x00\x00\xFF", 4) == 0)) {
+				printf("Error: Pixel format is NOT standard BGRA. Exiting.\n");
+				mos_fclose(file);
+				return return_info;
+			}
+				
+				// Skip remaining extra header bytes
+				for (i = biSize - 108; i > 0; i--) {
+					mos_fgetc(file);
+				}
+		} else {
+			// Skip all extra header bytes
+			for (i = biSize - 40; i > 0; i--) {
+				mos_fgetc(file);
+			}
+		}
+	}	
 
     if ((bit_depth != 32) && (bit_depth != 24) && (bit_depth != 8)) {
         printf("Error: unsupported bit depth (not 8, 24 or 32-bit).\n");
@@ -189,6 +219,8 @@ bmp_info load_bmp_big(const char * filename, UINT8 slot) { //Uses 64x64x4 chunks
 
     row_padding = (4 - (width * (bit_depth / 8)) % 4) % 4;
 
+	//clear_buffer(slot);
+	
     vdp_bitmapSelect(slot);
     putch(23); // vdu_sys
     putch(27); // sprite command
@@ -197,28 +229,32 @@ bmp_info load_bmp_big(const char * filename, UINT8 slot) { //Uses 64x64x4 chunks
     write16bit(width);
     write16bit(height);
 	
-
-    // if (bit_depth == 32) putch(1);
-    // if (bit_depth == 24 || bit_depth == 8) putch(0);
-
     if (bit_depth == 8) {
-
+		uint8_t a = 0xFF;
+		int non_pad_row = width * bit_depth / 8;
+		mos_flseek(file, image_start + ((height - 1) * (non_pad_row + row_padding)));
+		
         for (y = height - 1; y >= 0; y--) {
             for (x = 0; x < width; x++) {
 
-                index = (UINT8) mos_fgetc(file);
+                index = (char) mos_fgetc(file);
                 b = color_table[index * 4];
                 g = color_table[index * 4 + 1];
                 r = color_table[index * 4 + 2];
-                putch(b);
-                putch(g);
-                putch(r);
+				
+				putch(r);
+				putch(g);
+				putch(b);
+				putch(0xFF);
+				
 
             }
-
-            for (i = 0; i < row_padding; i++) {
-                mos_fgetc(file);
-            }
+			
+			//add_stream_to_buffer(slot,row_rgba2222,width);
+			mos_flseek(file, fo -> fptr - ((non_pad_row * 2) + row_padding));
+            // for (i = 0; i < row_padding; i++) {
+                // mos_fgetc(file);
+            // }
 
         }
 
@@ -233,7 +269,9 @@ bmp_info load_bmp_big(const char * filename, UINT8 slot) { //Uses 64x64x4 chunks
             mos_fread(file, src, non_pad_row);
 			reorder(src, non_pad_row);
             mos_puts(src, non_pad_row, 0);
+			//add_stream_to_buffer(slot,src,non_pad_row);
             mos_flseek(file, fo -> fptr - ((non_pad_row * 2) + row_padding));
+			free(src);			
 
         }
 
@@ -250,16 +288,19 @@ bmp_info load_bmp_big(const char * filename, UINT8 slot) { //Uses 64x64x4 chunks
             mos_fread(file, src, non_pad_row);
 			reorder_and_insert(src, non_pad_row, &row_24bpp, &new_row_size, 0xFF);
             mos_puts(row_24bpp, new_row_size, 0);
+			//add_stream_to_buffer(slot,row_24bpp,new_row_size);
             mos_flseek(file, fo -> fptr - ((non_pad_row * 2) + row_padding));
 			free(row_24bpp);
+			free(src);
 
         }		
 		
 	}
 
+	//assign_buffer_to_bitmap(slot,0,width,height);
+	
     mos_fclose(file);
     free(image_buffer);
-	free(src);
     //return width * height;
 	return_info.bmp_width = width;
 	return_info.bmp_height = height;
