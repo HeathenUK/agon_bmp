@@ -97,13 +97,14 @@ void twiddle_buffer(char* buffer, int width, int height) {
 	free(tempRow);
 }
 
-void reorder(char *arr, uint16_t length) {
+void reorder(char *arr, uint16_t length, BOOL alpha) {
     uint16_t i;
 	for (i = 0; i < length; i += 4) {
         if (i + 2 < length) {
             uint8_t temp = arr[i];
             arr[i] = arr[i + 2];
             arr[i + 2] = temp;
+			if (alpha == false) arr[i + 3] = 0xFF;
         }
     }
 }
@@ -132,8 +133,9 @@ bmp_info load_bmp_big(const char * filename, UINT8 slot) { //Uses 64x64x4 chunks
     int32_t image_start, width, height, bit_depth, row_padding = 0, y, x, i;
 	char* row_24bpp;
     uint8_t pixel[4], file, r, g, b, index;
-    char header[54], color_table[1024];
-    uint32_t pixel_value, color_table_size, bytes_per_row;
+    char header[128], color_table[1024];
+	char small_header[18];
+    uint32_t pixel_value, color_table_size, bytes_per_row, alphamask;
     uint32_t biSize;
     FIL * fo;
 	bmp_info return_info;
@@ -154,7 +156,10 @@ bmp_info load_bmp_big(const char * filename, UINT8 slot) { //Uses 64x64x4 chunks
     }
     fo = (FIL * ) mos_getfil(file);
 
-    mos_fread(file, header, 54);
+    mos_fread(file, small_header, 18);
+	biSize = * (uint32_t * ) & small_header[14];
+	mos_flseek(file,0);
+	mos_fread(file, header, biSize);
 
 	image_start = * (uint32_t * ) & header[10];
     biSize = * (uint32_t * ) & header[14];
@@ -162,7 +167,7 @@ bmp_info load_bmp_big(const char * filename, UINT8 slot) { //Uses 64x64x4 chunks
     height = * (INT32 * ) & header[22];
     bit_depth = * (uint16_t * ) & header[28];
     color_table_size = * (uint32_t * ) & header[46];
-	
+	alphamask =  * (uint32_t * ) & header[52];
 	
     image_buffer = (char * ) malloc(width * bit_depth / 8);
 
@@ -171,52 +176,13 @@ bmp_info load_bmp_big(const char * filename, UINT8 slot) { //Uses 64x64x4 chunks
     }
 
     if (color_table_size > 0) mos_fread(file, color_table, color_table_size * 4);
-
-    // else if (biSize > 40) { //If for any reason there's yet more data in the header
-
-        // i = biSize - 40;
-        // while (i--> 0) {
-            // mos_fgetc(file);
-        // }
-
-    // }
 	
-	if (biSize > 40) {
-		// If BITMAPV4HEADER or above, expect color masks
-		if (biSize >= 108) {
-			char redMask[4], greenMask[4], blueMask[4], alphaMask[4];
-			mos_fread(file, redMask, 4);
-			mos_fread(file, greenMask, 4);
-			mos_fread(file, blueMask, 4);
-			mos_fread(file, alphaMask, 4);
-				
-			if (!(memcmp(redMask, "\x00\x00\xFF\x00", 4) == 0 &&
-				  memcmp(greenMask, "\x00\xFF\x00\x00", 4) == 0 &&
-				  memcmp(blueMask, "\xFF\x00\x00\x00", 4) == 0 &&
-				  memcmp(alphaMask, "\x00\x00\x00\xFF", 4) == 0)) {
-				printf("Error: Pixel format is NOT standard BGRA. Exiting.\n");
-				mos_fclose(file);
-				return return_info;
-			}
-				
-				// Skip remaining extra header bytes
-				for (i = biSize - 108; i > 0; i--) {
-					mos_fgetc(file);
-				}
-		} else {
-			// Skip all extra header bytes
-			for (i = biSize - 40; i > 0; i--) {
-				mos_fgetc(file);
-			}
-		}
-	}	
-
     if ((bit_depth != 32) && (bit_depth != 24) && (bit_depth != 8)) {
         printf("Error: unsupported bit depth (not 8, 24 or 32-bit).\n");
         mos_fclose(file);
         return return_info;
     }
-
+	
     row_padding = (4 - (width * (bit_depth / 8)) % 4) % 4;
 
 	//clear_buffer(slot);
@@ -267,7 +233,8 @@ bmp_info load_bmp_big(const char * filename, UINT8 slot) { //Uses 64x64x4 chunks
         for (y = height - 1; y >= 0; y--) {
 
             mos_fread(file, src, non_pad_row);
-			reorder(src, non_pad_row);
+			if (alphamask == 0) reorder(src, non_pad_row, false);
+			else reorder(src, non_pad_row, true);
             mos_puts(src, non_pad_row, 0);
 			//add_stream_to_buffer(slot,src,non_pad_row);
             mos_flseek(file, fo -> fptr - ((non_pad_row * 2) + row_padding));
